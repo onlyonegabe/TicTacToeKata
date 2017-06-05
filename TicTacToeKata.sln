@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToeKata", "TicTacToeKata\TicTacToeKata.csproj", "{C6B96DDA-83A4-4CF7-A0F5-AFBDD0D19FF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToeKata.Tests", "TicTacToeKata.Tests\TicTacToeKata.Tests.csproj", "{BF37F13A-79E5-444A-8ADA-27B05612FB7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToeKata.UnitTests", "TicTacToeKata.Tests\TicTacToeKata.UnitTests.csproj", "{BF37F13A-79E5-444A-8ADA-27B05612FB7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

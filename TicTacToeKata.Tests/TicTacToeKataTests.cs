@@ -3,11 +3,12 @@
 namespace TicTacToeKata.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class TicTacToeKataTests
     {
         [TestMethod]
-        public void Something()
+        public void CanCreateGame()
         {
+            var game = new TicTacToeGame();            
         }
     }
 }
