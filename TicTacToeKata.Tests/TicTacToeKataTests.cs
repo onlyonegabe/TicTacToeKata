@@ -16,9 +16,6 @@ namespace TicTacToeKata.Tests
         [TestMethod]
         public void NewGameHasNoFieldsPlayed()
         {
-            // Arrange
-            var game = new TicTacToeGame();
-
             // Act
             int numberOfFieldsPlayed = game.GetNumberOfFieldsPlayed();
 
