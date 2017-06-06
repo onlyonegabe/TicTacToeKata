@@ -2,9 +2,16 @@
 {
     public class TicTacToeGame
     {
-        public int GetNumberOfFieldsPlayed()
+        public int NumberOfFieldsPlayed { get; internal set; }
+
+        public enum Player
         {
-            return 0;
+            X
+        };
+
+        public void TakeField(int row, int column, Player player)
+        {
+            NumberOfFieldsPlayed++;
         }
     }
 }
