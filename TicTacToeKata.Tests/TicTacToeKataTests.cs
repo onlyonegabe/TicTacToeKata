@@ -5,10 +5,25 @@ namespace TicTacToeKata.Tests
     [TestClass]
     public class TicTacToeKataTests
     {
-        [TestMethod]
-        public void CanCreateGame()
+        private TicTacToeGame game;
+
+        [TestInitialize]
+        public void SetUp()
         {
-            var game = new TicTacToeGame();            
+            game = new TicTacToeGame();
+        }
+
+        [TestMethod]
+        public void NewGameHasNoFieldsPlayed()
+        {
+            // Arrange
+            var game = new TicTacToeGame();
+
+            // Act
+            int numberOfFieldsPlayed = game.GetNumberOfFieldsPlayed();
+
+            // Assert
+            Assert.AreEqual<int>(0, numberOfFieldsPlayed);
         }
     }
 }
