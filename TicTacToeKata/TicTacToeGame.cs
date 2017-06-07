@@ -9,16 +9,24 @@
         public enum Player
         {
             X,
-            Y
+            O
         };
 
         public void TakeField(int row, int column, Player player)
         {
             NumberOfFieldsPlayed++;
-            
+            ChangePlayer();
+        }
+
+        private void ChangePlayer()
+        {
             if (CurrentPlayer == Player.X)
             {
-                CurrentPlayer = Player.Y;
+                CurrentPlayer = Player.O;
+            }
+            else if (CurrentPlayer == Player.O)
+            {
+                CurrentPlayer = Player.X;
             }
         }
     }
