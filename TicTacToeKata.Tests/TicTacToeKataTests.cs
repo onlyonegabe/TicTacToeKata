@@ -23,20 +23,36 @@ namespace TicTacToeKata.Tests
             Assert.AreEqual<int>(0, numberOfFieldsPlayed);
         }
 
+        private (TicTacToeGame.Player playerX, int rowPlayed, int columnPlayed) GivenFieldPlayedByPlayerX()
+        {
+            return (TicTacToeGame.Player.X, 1, 1);
+        }
+
         [TestMethod]
-        public void Player1TakesFirstField()
+        public void NumberOfFieldsPlayedIsOne_WhenFirstFieldIsTaken()
         {
             // Arrange
-            var player1 = TicTacToeGame.Player.X;
-            int rowPlayed = 1;
-            int columnPlayed = 1;
+            (var playerX, var rowPlayed, var columnPlayed) = GivenFieldPlayedByPlayerX();
 
             // Act
-            game.TakeField(rowPlayed, columnPlayed, player1);
+            game.TakeField(rowPlayed, columnPlayed, playerX);
 
             // Assert
             int numberOfFieldsPlayed = game.NumberOfFieldsPlayed;
             Assert.AreEqual<int>(1, numberOfFieldsPlayed);
+        }
+
+        [TestMethod]
+        public void CurrentPlayerIsY_WhenPlayerXPlaysAField()
+        {
+            // Arrange
+            (var playerX, var rowPlayed, var columnPlayed) = GivenFieldPlayedByPlayerX();
+
+            // Act
+            game.TakeField(rowPlayed, columnPlayed, playerX);
+
+            // Assert
+            Assert.AreEqual<TicTacToeGame.Player>(TicTacToeGame.Player.Y, game.CurrentPlayer);
         }
     }
 }
