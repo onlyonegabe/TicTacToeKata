@@ -11,12 +11,6 @@ namespace TicTacToeKata
 
         private List<Field> fieldsPlayed = new List<Field>();
 
-        public enum Player
-        {
-            X,
-            O
-        };
-
         public void TakeField(int row, int column, Player player)
         {
             if (HasFieldBeenTaken(row, column))
@@ -54,6 +48,6 @@ namespace TicTacToeKata
     {
         public int Row { get; set; }
         public int Column { get; set; }
-        public TicTacToeGame.Player TakenBy { get; set; }
+        public Player TakenBy { get; set; }
     }
 }
