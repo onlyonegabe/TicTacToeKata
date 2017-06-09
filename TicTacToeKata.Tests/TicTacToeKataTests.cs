@@ -89,7 +89,7 @@ namespace TicTacToeKata.Tests
         }
 
         [TestMethod]
-        public void PlayerOCannotTakeFieldConsecutively()
+        public void PlayerOCannotTakeFieldsConsecutively()
         {
             // Arrange
             (int rowPlayedByX, int columnPlayedByX) = (2, 1);
