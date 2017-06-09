@@ -14,8 +14,11 @@
 
         public void TakeField(int row, int column, Player player)
         {
-            NumberOfFieldsPlayed++;
-            ChangePlayer();
+            if (CurrentPlayer == player)
+            {
+                NumberOfFieldsPlayed++;
+                ChangePlayer();
+            }
         }
 
         private void ChangePlayer()
