@@ -47,7 +47,7 @@ namespace TicTacToeKata.Tests
         }
 
         [TestMethod]
-        public void CurrentPlayerBecomesO_WhenPlayerXPlaysAField()
+        public void CurrentPlayerBecomesTheOtherPlayer_WhenFieldIsTaken()
         {
             // Arrange
             (int rowPlayed, int columnPlayed) = (1, 1);
@@ -60,36 +60,7 @@ namespace TicTacToeKata.Tests
         }
 
         [TestMethod]
-        public void CurrentPlayerBecomesX_WhenPlayerOPlaysAField()
-        {
-            // Arrange
-            (int rowPlayedByX, int columnPlayedByX) = (1, 1);
-            (int rowPlayedByO, int columnPlayedByO) = (1, 2);
-
-            // Act
-            game.TakeField(rowPlayedByX, columnPlayedByX, TicTacToeGame.Player.X);
-            game.TakeField(rowPlayedByO, columnPlayedByO, TicTacToeGame.Player.O);
-
-            // Assert
-            Assert.AreEqual<TicTacToeGame.Player>(TicTacToeGame.Player.X, game.CurrentPlayer);
-        }
-
-        [TestMethod]
-        public void PlayerXCannotTakeFieldConsecutively()
-        {
-            // Arrange
-            (int rowPlayedByX, int firstColumnPlayedByX, int secondColumnPlayedByX) = (1, 1, 2);
-
-            // Act
-            game.TakeField(rowPlayedByX, firstColumnPlayedByX, TicTacToeGame.Player.X);
-            game.TakeField(rowPlayedByX, secondColumnPlayedByX, TicTacToeGame.Player.X);
-
-            // Assert
-            Assert.AreEqual<int>(1, game.NumberOfFieldsPlayed);
-        }
-
-        [TestMethod]
-        public void PlayerOCannotTakeFieldsConsecutively()
+        public void PlayerCannotTakeFieldsConsecutively()
         {
             // Arrange
             (int rowPlayedByX, int columnPlayedByX) = (2, 1);
@@ -102,6 +73,22 @@ namespace TicTacToeKata.Tests
 
             // Assert
             Assert.AreEqual<int>(2, game.NumberOfFieldsPlayed);
+        }
+
+        [TestMethod]
+        public void PlayerCannotTakeAFieldAlreadyTaken()
+        {
+            // Arrange
+            (int rowPlayedByX, int columnPlayedByX) = (1, 1);
+            (int rowPlayedByO, int columnPlayedByO) = (1, 1);
+
+            // Act
+            game.TakeField(rowPlayedByX, columnPlayedByX, TicTacToeGame.Player.X);
+            game.TakeField(rowPlayedByO, columnPlayedByO, TicTacToeGame.Player.O);
+
+            // Assert
+            Assert.AreEqual<int>(1, game.NumberOfFieldsPlayed);
+            Assert.AreEqual<TicTacToeGame.Player>(TicTacToeGame.Player.O, game.CurrentPlayer);
         }
     }
 }
