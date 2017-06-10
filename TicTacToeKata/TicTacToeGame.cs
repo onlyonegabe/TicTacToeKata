@@ -7,8 +7,18 @@ namespace TicTacToeKata
     {
         private List<Field> fieldsPlayed = new List<Field>();
 
-        public int NumberOfFieldsPlayed { get; internal set; }
-        public Player CurrentPlayer { get; internal set; }
+        public int NumberOfFieldsPlayed { get; private set; }
+        public Player CurrentPlayer { get; private set; }
+
+        public void TakeField(int row, int column, Player player)
+        {
+            if (IsMoveValid(row, column) && (IsPlayersTurn(player)))
+            {
+                NumberOfFieldsPlayed++;
+                fieldsPlayed.Add(new Field { Row = row, Column = column, TakenBy = player });
+                ChangePlayersTurn();
+            }
+        }
 
         private bool HasFieldBeenTaken(int row, int column)
         {
@@ -27,16 +37,6 @@ namespace TicTacToeKata
             }
         }
 
-        public void TakeField(int row, int column, Player player)
-        {
-            if (IsMoveValid(row, column) && (IsPlayersTurn(player)))
-            {
-                NumberOfFieldsPlayed++;
-                fieldsPlayed.Add(new Field { Row = row, Column = column, TakenBy = player });
-                ChangePlayersTurn();
-            }
-        }
-
         private bool IsPlayersTurn(Player player)
         {
             return CurrentPlayer == player;
@@ -44,7 +44,7 @@ namespace TicTacToeKata
 
         private bool IsMoveValid(int row, int column)
         {
-            return !(row > 3 || HasFieldBeenTaken(row, column));
+            return !(row > 3 || column > 3 || HasFieldBeenTaken(row, column));
         }
     }
 }
