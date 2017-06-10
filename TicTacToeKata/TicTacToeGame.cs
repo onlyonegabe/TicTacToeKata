@@ -15,7 +15,7 @@ namespace TicTacToeKata
             return fieldsPlayed.Any(x => x.Row == row && x.Column == column);
         }
 
-        private void ChangePlayer()
+        private void ChangePlayersTurn()
         {
             if (CurrentPlayer == Player.X)
             {
@@ -29,17 +29,22 @@ namespace TicTacToeKata
 
         public void TakeField(int row, int column, Player player)
         {
-            if (HasFieldBeenTaken(row, column))
-            {
-                return;
-            }
-
-            if (CurrentPlayer == player)
+            if (IsMoveValid(row, column) && (IsPlayersTurn(player)))
             {
                 NumberOfFieldsPlayed++;
-                fieldsPlayed.Add(new Field {Row = row, Column = column, TakenBy = player});
-                ChangePlayer();
+                fieldsPlayed.Add(new Field { Row = row, Column = column, TakenBy = player });
+                ChangePlayersTurn();
             }
+        }
+
+        private bool IsPlayersTurn(Player player)
+        {
+            return CurrentPlayer == player;
+        }
+
+        private bool IsMoveValid(int row, int column)
+        {
+            return !(row > 3 || HasFieldBeenTaken(row, column));
         }
     }
 }

@@ -90,5 +90,18 @@ namespace TicTacToeKata.Tests
             Assert.AreEqual<int>(1, game.NumberOfFieldsPlayed);
             Assert.AreEqual<Player>(Player.O, game.CurrentPlayer);
         }
+
+        [TestMethod]
+        public void FieldRowCannotBeGreaterThan3()
+        {
+            // Arrange
+            (int rowPlayed, int columnPlayed) = (4, 1);
+
+            // Act
+            game.TakeField(rowPlayed, columnPlayed, Player.X);
+
+            // Assert
+            Assert.AreEqual<int>(0, game.NumberOfFieldsPlayed);
+        }
     }
 }
