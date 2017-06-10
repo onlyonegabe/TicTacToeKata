@@ -14,107 +14,87 @@ namespace TicTacToeKata.Tests
         }
 
         [TestMethod]
-        public void NewGameHasNoFieldsPlayed()
+        public void FirstPlayerMustBeX()
         {
-            // Assert
-            Assert.AreEqual<int>(0, game.NumberOfFieldsPlayed);
-        }
-
-        [TestMethod]
-        public void FirstIsPlayerIsX()
-        {
-            // Arrange
-            (int rowPlayed, int columnPlayed) = (1, 1);
-
             // Act
-            game.TakeField(rowPlayed, columnPlayed, Player.PlayerType.X);
+            game.TakeField(1, 1, Player.PlayerType.X);
 
             // Assert
-            Assert.AreEqual<int>(1, game.NumberOfFieldsPlayed);
+            Assert.AreEqual<int>(1, game.CountOfFieldsPlayed);
         }
 
         [TestMethod]
         public void FirstPlayerCannotBeO()
         {
-            // Arrange
-            (int rowPlayed, int columnPlayed) = (1, 1);
-
             // Act
-            game.TakeField(rowPlayed, columnPlayed, Player.PlayerType.O);
+            game.TakeField(1, 1, Player.PlayerType.O);
 
             // Assert
-            Assert.AreEqual<int>(0, game.NumberOfFieldsPlayed);
+            Assert.AreEqual<int>(0, game.CountOfFieldsPlayed);
         }
 
         [TestMethod]
-        public void CurrentPlayerBecomesTheOtherPlayer_WhenFieldIsTaken()
+        public void PlayersMustSwitchOnEachTurn()
         {
-            // Arrange
-            (int rowPlayed, int columnPlayed) = (1, 1);
-
             // Act
-            game.TakeField(rowPlayed, columnPlayed, Player.PlayerType.X);
+            game.TakeField(1, 1, Player.PlayerType.X);
 
             // Assert
             Assert.AreEqual<Player.PlayerType>(Player.PlayerType.O, game.CurrentPlayer);
         }
 
         [TestMethod]
-        public void PlayerCannotTakeFieldsConsecutively()
+        public void PlayerCannotPlayConsecutively()
         {
-            // Arrange
-            (int rowPlayedByX, int columnPlayedByX) = (2, 1);
-            (int rowPlayedByO, int firstColumnPlayedByO, int secondColumnPlayedByO) = (1, 1, 2);
-
             // Act
-            game.TakeField(rowPlayedByX, columnPlayedByX, Player.PlayerType.X);
-            game.TakeField(rowPlayedByO, firstColumnPlayedByO, Player.PlayerType.O);
-            game.TakeField(rowPlayedByO, secondColumnPlayedByO, Player.PlayerType.O);
+            GivenThatPlayerTriesToPlayConsecutively();
 
             // Assert
-            Assert.AreEqual<int>(2, game.NumberOfFieldsPlayed);
+            Assert.AreEqual<int>(2, game.CountOfFieldsPlayed);
+        }
+
+        private void GivenThatPlayerTriesToPlayConsecutively()
+        {
+            game.TakeField(2, 1, Player.PlayerType.X);
+            game.TakeField(1, 1, Player.PlayerType.O);
+            game.TakeField(1, 2, Player.PlayerType.O);
         }
 
         [TestMethod]
         public void PlayerCannotTakeAFieldAlreadyTaken()
         {
-            // Arrange
-            (int rowPlayedByX, int columnPlayedByX) = (1, 1);
-            (int rowPlayedByO, int columnPlayedByO) = (1, 1);
-
             // Act
-            game.TakeField(rowPlayedByX, columnPlayedByX, Player.PlayerType.X);
-            game.TakeField(rowPlayedByO, columnPlayedByO, Player.PlayerType.O);
+            GivenThatPlayerTriesToTakeAFieldAlreadyTaken();
 
             // Assert
-            Assert.AreEqual<int>(1, game.NumberOfFieldsPlayed);
+            Assert.AreEqual<int>(1, game.CountOfFieldsPlayed);
             Assert.AreEqual<Player.PlayerType>(Player.PlayerType.O, game.CurrentPlayer);
         }
 
-        [TestMethod]
-        public void FieldRowCannotBeGreaterThan3()
+        private void GivenThatPlayerTriesToTakeAFieldAlreadyTaken()
         {
-            // Arrange
-            (int rowPlayed, int columnPlayed) = (4, 1);
+            game.TakeField(1, 1, Player.PlayerType.X);
+            game.TakeField(1, 1, Player.PlayerType.O);
+        }
 
+        [TestMethod]
+        public void RowCannotBeGreaterThan3()
+        {
             // Act
-            game.TakeField(rowPlayed, columnPlayed, Player.PlayerType.X);
+            game.TakeField(4, 1, Player.PlayerType.X);
 
             // Assert
-            Assert.AreEqual<int>(0, game.NumberOfFieldsPlayed);
+            Assert.AreEqual<int>(0, game.CountOfFieldsPlayed);
         }
 
         [TestMethod]
         public void ColumnCannotBeGreaterThan3()
         {
-            // Arrange
-            (int rowPlayed, int columnPlayed) = (1, 4);
-
             // Act
-            game.TakeField(rowPlayed, columnPlayed, Player.PlayerType.X);
+            game.TakeField(1, 4, Player.PlayerType.X);
 
             // Assert
-            Assert.AreEqual<int>(0, game.NumberOfFieldsPlayed);
+            Assert.AreEqual<int>(0, game.CountOfFieldsPlayed);
         }
 
         [TestMethod]

@@ -11,7 +11,7 @@ namespace TicTacToeKata
         private int column;
 
         public Player.PlayerType CurrentPlayer { get { return player.Current; } }
-        public int NumberOfFieldsPlayed { get; private set; }
+        public int CountOfFieldsPlayed { get; private set; }
         public bool IsOver { get; set; }
 
         public void TakeField(int row, int column, Player.PlayerType playerType)
@@ -31,7 +31,7 @@ namespace TicTacToeKata
 
         private void TakeTurn(int row, int column, Player.PlayerType playerType)
         {
-            NumberOfFieldsPlayed++;
+            CountOfFieldsPlayed++;
             fieldsPlayed.Add(new Field { Row = row, Column = column, TakenBy = playerType });
             player.ChangeTurn();
         }
