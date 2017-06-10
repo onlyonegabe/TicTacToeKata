@@ -3,24 +3,15 @@
     public class Player
     {
         public enum PlayerType { X, O };
-
-        public PlayerType Current;
-
-        public void ChangeTurn()
+        
+        public PlayerType Change(PlayerType playerType)
         {
-            if (Current == PlayerType.X)
+            if (playerType == PlayerType.X)
             {
-                Current = PlayerType.O;
+                return PlayerType.O;
             }
-            else if (Current == PlayerType.O)
-            {
-                Current = PlayerType.X;
-            }
-        }
 
-        public bool IsPlayersTurn(PlayerType player)
-        {
-            return Current == player;
+            return PlayerType.X;
         }
     }
 }
