@@ -5,10 +5,9 @@ namespace TicTacToeKata
 {
     public class TicTacToeGame
     {
+        private Field field;
         private List<Field> fieldsPlayed = new List<Field>();
-        private Player player = new Player();
-        private int row;
-        private int column;
+        private Player player = new Player();        
 
         public Player.PlayerType ActivePlayer { get { return player.Current; } }
         public int CountOfFieldsPlayed { get; private set; }
@@ -16,11 +15,11 @@ namespace TicTacToeKata
 
         public void TakeField(int row, int column, Player.PlayerType playerType)
         {
-            (this.row, this.column) = (row, column);
+            field = new Field { Row = row, Column = column };
 
             if (IsMoveValid() && (player.IsPlayersTurn(playerType)))
             {
-                TakeTurn(playerType);
+                TakeTurn();
             }
 
             if (fieldsPlayed.Count == 9)
@@ -29,21 +28,21 @@ namespace TicTacToeKata
             }
         }
 
-        private void TakeTurn(Player.PlayerType playerType)
+        private void TakeTurn()
         {
             CountOfFieldsPlayed++;
-            fieldsPlayed.Add(new Field { Row = row, Column = column, TakenBy = playerType });
+            fieldsPlayed.Add(field);
             player.ChangeTurn();
         }
 
         private bool HasFieldBeenTaken()
         {
-            return fieldsPlayed.Any(x => x.Row == row && x.Column == column);
+            return fieldsPlayed.Any(x => x.Row == field.Row && x.Column == field.Column);
         }
 
         private bool IsMoveValid()
         {
-            return !(row > 3 || column > 3 || HasFieldBeenTaken());
+            return !(field.Row > 3 || field.Column > 3 || HasFieldBeenTaken());
         }
     }
 }
