@@ -12,6 +12,7 @@ namespace TicTacToeKata
 
         public PlayerType CurrentPlayer { get { return player.Current; } }
         public int NumberOfFieldsPlayed { get; private set; }
+        public bool IsOver { get; set; }
 
         public void TakeField(int row, int column, PlayerType playerType)
         {
@@ -22,6 +23,11 @@ namespace TicTacToeKata
                 NumberOfFieldsPlayed++;
                 fieldsPlayed.Add(new Field { Row = row, Column = column, TakenBy = playerType });
                 player.ChangeTurn();
+            }
+
+            if (fieldsPlayed.Count == 9)
+            {
+                IsOver = true;
             }
         }
 

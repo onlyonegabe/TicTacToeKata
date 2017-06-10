@@ -116,5 +116,28 @@ namespace TicTacToeKata.Tests
             // Assert
             Assert.AreEqual<int>(0, game.NumberOfFieldsPlayed);
         }
+
+        [TestMethod]
+        public void GameIsOverWhenAllFieldsAreTaken()
+        {
+            // Act
+            GivenThatAllFieldsAreTaken();
+
+            // Assert
+            Assert.AreEqual<bool>(true, game.IsOver);
+        }
+
+        private void GivenThatAllFieldsAreTaken()
+        {
+            game.TakeField(1, 1, PlayerType.X);
+            game.TakeField(1, 2, PlayerType.O);
+            game.TakeField(1, 3, PlayerType.X);
+            game.TakeField(2, 1, PlayerType.O);
+            game.TakeField(2, 2, PlayerType.X);
+            game.TakeField(2, 3, PlayerType.O);
+            game.TakeField(3, 1, PlayerType.X);
+            game.TakeField(3, 2, PlayerType.O);
+            game.TakeField(3, 3, PlayerType.X);
+        }
     }
 }
