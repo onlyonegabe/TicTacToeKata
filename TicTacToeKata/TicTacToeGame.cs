@@ -20,7 +20,7 @@ namespace TicTacToeKata
 
             if (IsMoveValid() && (player.IsPlayersTurn(playerType)))
             {
-                TakeTurn(row, column, playerType);
+                TakeTurn(playerType);
             }
 
             if (fieldsPlayed.Count == 9)
@@ -29,7 +29,7 @@ namespace TicTacToeKata
             }
         }
 
-        private void TakeTurn(int row, int column, Player.PlayerType playerType)
+        private void TakeTurn(Player.PlayerType playerType)
         {
             CountOfFieldsPlayed++;
             fieldsPlayed.Add(new Field { Row = row, Column = column, TakenBy = playerType });
