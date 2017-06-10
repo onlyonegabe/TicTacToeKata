@@ -9,7 +9,7 @@ namespace TicTacToeKata
         private List<Field> fieldsPlayed = new List<Field>();
 
         public Player ActivePlayer { get; private set;  } 
-        public int CountOfFieldsPlayed { get; private set; }
+        public int CountOfFieldsPlayed { get { return fieldsPlayed.Count; } }
         public bool IsOver { get; private set; }
 
         public void TakeField(int row, int column, Player player)
@@ -29,7 +29,6 @@ namespace TicTacToeKata
 
         private void TakeTurn()
         {
-            CountOfFieldsPlayed++;
             fieldsPlayed.Add(field);
             ActivePlayer = Change(ActivePlayer);
         }
