@@ -20,15 +20,20 @@ namespace TicTacToeKata
 
             if (IsMoveValid() && (player.IsPlayersTurn(playerType)))
             {
-                NumberOfFieldsPlayed++;
-                fieldsPlayed.Add(new Field { Row = row, Column = column, TakenBy = playerType });
-                player.ChangeTurn();
+                TakeTurn(row, column, playerType);
             }
 
             if (fieldsPlayed.Count == 9)
             {
                 IsOver = true;
             }
+        }
+
+        private void TakeTurn(int row, int column, PlayerType playerType)
+        {
+            NumberOfFieldsPlayed++;
+            fieldsPlayed.Add(new Field { Row = row, Column = column, TakenBy = playerType });
+            player.ChangeTurn();
         }
 
         private bool HasFieldBeenTaken()
