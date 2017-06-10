@@ -25,12 +25,7 @@ namespace TicTacToeKata
             {
                 IsOver = true;
             }
-        }        
-
-        private bool IsActive(Player playerType)
-        {
-            return playerType == ActivePlayer;
-        }
+        }                
 
         private void TakeTurn()
         {
@@ -47,16 +42,21 @@ namespace TicTacToeKata
             }
 
             return Player.X;
-        }
+        }        
 
-        private bool HasFieldBeenTaken()
+        private bool IsActive(Player player)
         {
-            return fieldsPlayed.Any(x => x.Row == field.Row && x.Column == field.Column);
+            return player == ActivePlayer;
         }
 
         private bool IsMoveValid()
         {
             return !(field.Row > 3 || field.Column > 3 || HasFieldBeenTaken());
+        }
+
+        private bool HasFieldBeenTaken()
+        {
+            return fieldsPlayed.Any(x => x.Row == field.Row && x.Column == field.Column);
         }
     }
 }
