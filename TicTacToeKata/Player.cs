@@ -1,8 +1,24 @@
 ﻿namespace TicTacToeKata
 {
-    public enum Player
+    public class Player
     {
-        X,
-        O
-    };
+        public PlayerType Current;
+
+        public void ChangeTurn()
+        {
+            if (Current == PlayerType.X)
+            {
+                Current = PlayerType.O;
+            }
+            else if (Current == PlayerType.O)
+            {
+                Current = PlayerType.X;
+            }
+        }
+
+        public bool IsPlayersTurn(PlayerType player)
+        {
+            return Current == player;
+        }
+    }
 }

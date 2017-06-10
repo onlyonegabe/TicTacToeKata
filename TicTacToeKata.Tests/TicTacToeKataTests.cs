@@ -27,7 +27,7 @@ namespace TicTacToeKata.Tests
             (int rowPlayed, int columnPlayed) = (1, 1);
 
             // Act
-            game.TakeField(rowPlayed, columnPlayed, Player.X);
+            game.TakeField(rowPlayed, columnPlayed, PlayerType.X);
 
             // Assert
             Assert.AreEqual<int>(1, game.NumberOfFieldsPlayed);
@@ -40,7 +40,7 @@ namespace TicTacToeKata.Tests
             (int rowPlayed, int columnPlayed) = (1, 1);
 
             // Act
-            game.TakeField(rowPlayed, columnPlayed, Player.O);
+            game.TakeField(rowPlayed, columnPlayed, PlayerType.O);
 
             // Assert
             Assert.AreEqual<int>(0, game.NumberOfFieldsPlayed);
@@ -53,10 +53,10 @@ namespace TicTacToeKata.Tests
             (int rowPlayed, int columnPlayed) = (1, 1);
 
             // Act
-            game.TakeField(rowPlayed, columnPlayed, Player.X);
+            game.TakeField(rowPlayed, columnPlayed, PlayerType.X);
 
             // Assert
-            Assert.AreEqual<Player>(Player.O, game.CurrentPlayer);
+            Assert.AreEqual<PlayerType>(PlayerType.O, game.CurrentPlayer);
         }
 
         [TestMethod]
@@ -67,9 +67,9 @@ namespace TicTacToeKata.Tests
             (int rowPlayedByO, int firstColumnPlayedByO, int secondColumnPlayedByO) = (1, 1, 2);
 
             // Act
-            game.TakeField(rowPlayedByX, columnPlayedByX, Player.X);
-            game.TakeField(rowPlayedByO, firstColumnPlayedByO, Player.O);
-            game.TakeField(rowPlayedByO, secondColumnPlayedByO, Player.O);
+            game.TakeField(rowPlayedByX, columnPlayedByX, PlayerType.X);
+            game.TakeField(rowPlayedByO, firstColumnPlayedByO, PlayerType.O);
+            game.TakeField(rowPlayedByO, secondColumnPlayedByO, PlayerType.O);
 
             // Assert
             Assert.AreEqual<int>(2, game.NumberOfFieldsPlayed);
@@ -83,12 +83,12 @@ namespace TicTacToeKata.Tests
             (int rowPlayedByO, int columnPlayedByO) = (1, 1);
 
             // Act
-            game.TakeField(rowPlayedByX, columnPlayedByX, Player.X);
-            game.TakeField(rowPlayedByO, columnPlayedByO, Player.O);
+            game.TakeField(rowPlayedByX, columnPlayedByX, PlayerType.X);
+            game.TakeField(rowPlayedByO, columnPlayedByO, PlayerType.O);
 
             // Assert
             Assert.AreEqual<int>(1, game.NumberOfFieldsPlayed);
-            Assert.AreEqual<Player>(Player.O, game.CurrentPlayer);
+            Assert.AreEqual<PlayerType>(PlayerType.O, game.CurrentPlayer);
         }
 
         [TestMethod]
@@ -98,7 +98,7 @@ namespace TicTacToeKata.Tests
             (int rowPlayed, int columnPlayed) = (4, 1);
 
             // Act
-            game.TakeField(rowPlayed, columnPlayed, Player.X);
+            game.TakeField(rowPlayed, columnPlayed, PlayerType.X);
 
             // Assert
             Assert.AreEqual<int>(0, game.NumberOfFieldsPlayed);
@@ -111,7 +111,7 @@ namespace TicTacToeKata.Tests
             (int rowPlayed, int columnPlayed) = (1, 4);
 
             // Act
-            game.TakeField(rowPlayed, columnPlayed, Player.X);
+            game.TakeField(rowPlayed, columnPlayed, PlayerType.X);
 
             // Assert
             Assert.AreEqual<int>(0, game.NumberOfFieldsPlayed);

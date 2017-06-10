@@ -6,45 +6,33 @@ namespace TicTacToeKata
     public class TicTacToeGame
     {
         private List<Field> fieldsPlayed = new List<Field>();
+        private Player player = new Player();
+        private int row;
+        private int column;
 
+        public PlayerType CurrentPlayer { get { return player.Current; } }
         public int NumberOfFieldsPlayed { get; private set; }
-        public Player CurrentPlayer { get; private set; }
 
-        public void TakeField(int row, int column, Player player)
+        public void TakeField(int row, int column, PlayerType playerType)
         {
-            if (IsMoveValid(row, column) && (IsPlayersTurn(player)))
+            (this.row, this.column) = (row, column);
+
+            if (IsMoveValid() && (player.IsPlayersTurn(playerType)))
             {
                 NumberOfFieldsPlayed++;
-                fieldsPlayed.Add(new Field { Row = row, Column = column, TakenBy = player });
-                ChangePlayersTurn();
+                fieldsPlayed.Add(new Field { Row = row, Column = column, TakenBy = playerType });
+                player.ChangeTurn();
             }
         }
 
-        private bool HasFieldBeenTaken(int row, int column)
+        private bool HasFieldBeenTaken()
         {
             return fieldsPlayed.Any(x => x.Row == row && x.Column == column);
         }
 
-        private void ChangePlayersTurn()
+        private bool IsMoveValid()
         {
-            if (CurrentPlayer == Player.X)
-            {
-                CurrentPlayer = Player.O;
-            }
-            else if (CurrentPlayer == Player.O)
-            {
-                CurrentPlayer = Player.X;
-            }
-        }
-
-        private bool IsPlayersTurn(Player player)
-        {
-            return CurrentPlayer == player;
-        }
-
-        private bool IsMoveValid(int row, int column)
-        {
-            return !(row > 3 || column > 3 || HasFieldBeenTaken(row, column));
+            return !(row > 3 || column > 3 || HasFieldBeenTaken());
         }
     }
 }

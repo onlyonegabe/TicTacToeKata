@@ -4,6 +4,6 @@
     {
         public int Row { get; set; }
         public int Column { get; set; }
-        public Player TakenBy { get; set; }
+        public PlayerType TakenBy { get; set; }
     }
 }
