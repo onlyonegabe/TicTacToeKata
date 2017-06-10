@@ -40,20 +40,20 @@ namespace TicTacToeKata.Tests
             game.TakeField(1, 1, Player.PlayerType.X);
 
             // Assert
-            Assert.AreEqual<Player.PlayerType>(Player.PlayerType.O, game.CurrentPlayer);
+            Assert.AreEqual<Player.PlayerType>(Player.PlayerType.O, game.ActivePlayer);
         }
 
         [TestMethod]
         public void PlayerCannotPlayConsecutively()
         {
             // Act
-            GivenThatPlayerTriesToPlayConsecutively();
+            WhenPlayerTriesToPlayConsecutively();
 
             // Assert
             Assert.AreEqual<int>(2, game.CountOfFieldsPlayed);
         }
 
-        private void GivenThatPlayerTriesToPlayConsecutively()
+        private void WhenPlayerTriesToPlayConsecutively()
         {
             game.TakeField(2, 1, Player.PlayerType.X);
             game.TakeField(1, 1, Player.PlayerType.O);
@@ -64,14 +64,14 @@ namespace TicTacToeKata.Tests
         public void PlayerCannotTakeAFieldAlreadyTaken()
         {
             // Act
-            GivenThatPlayerTriesToTakeAFieldAlreadyTaken();
+            WhenPlayerTriesToTakeAFieldAlreadyTaken();
 
             // Assert
             Assert.AreEqual<int>(1, game.CountOfFieldsPlayed);
-            Assert.AreEqual<Player.PlayerType>(Player.PlayerType.O, game.CurrentPlayer);
+            Assert.AreEqual<Player.PlayerType>(Player.PlayerType.O, game.ActivePlayer);
         }
 
-        private void GivenThatPlayerTriesToTakeAFieldAlreadyTaken()
+        private void WhenPlayerTriesToTakeAFieldAlreadyTaken()
         {
             game.TakeField(1, 1, Player.PlayerType.X);
             game.TakeField(1, 1, Player.PlayerType.O);
@@ -101,13 +101,13 @@ namespace TicTacToeKata.Tests
         public void GameIsOverWhenAllFieldsAreTaken()
         {
             // Act
-            GivenThatAllFieldsAreTaken();
+            WhenAllFieldsAreTaken();
 
             // Assert
             Assert.AreEqual<bool>(true, game.IsOver);
         }
 
-        private void GivenThatAllFieldsAreTaken()
+        private void WhenAllFieldsAreTaken()
         {
             game.TakeField(1, 1, Player.PlayerType.X);
             game.TakeField(1, 2, Player.PlayerType.O);

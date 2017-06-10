@@ -10,7 +10,7 @@ namespace TicTacToeKata
         private int row;
         private int column;
 
-        public Player.PlayerType CurrentPlayer { get { return player.Current; } }
+        public Player.PlayerType ActivePlayer { get { return player.Current; } }
         public int CountOfFieldsPlayed { get; private set; }
         public bool IsOver { get; set; }
 
