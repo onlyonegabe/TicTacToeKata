@@ -27,7 +27,7 @@ namespace TicTacToeKata.Tests
             (int rowPlayed, int columnPlayed) = (1, 1);
 
             // Act
-            game.TakeField(rowPlayed, columnPlayed, PlayerType.X);
+            game.TakeField(rowPlayed, columnPlayed, Player.PlayerType.X);
 
             // Assert
             Assert.AreEqual<int>(1, game.NumberOfFieldsPlayed);
@@ -40,7 +40,7 @@ namespace TicTacToeKata.Tests
             (int rowPlayed, int columnPlayed) = (1, 1);
 
             // Act
-            game.TakeField(rowPlayed, columnPlayed, PlayerType.O);
+            game.TakeField(rowPlayed, columnPlayed, Player.PlayerType.O);
 
             // Assert
             Assert.AreEqual<int>(0, game.NumberOfFieldsPlayed);
@@ -53,10 +53,10 @@ namespace TicTacToeKata.Tests
             (int rowPlayed, int columnPlayed) = (1, 1);
 
             // Act
-            game.TakeField(rowPlayed, columnPlayed, PlayerType.X);
+            game.TakeField(rowPlayed, columnPlayed, Player.PlayerType.X);
 
             // Assert
-            Assert.AreEqual<PlayerType>(PlayerType.O, game.CurrentPlayer);
+            Assert.AreEqual<Player.PlayerType>(Player.PlayerType.O, game.CurrentPlayer);
         }
 
         [TestMethod]
@@ -67,9 +67,9 @@ namespace TicTacToeKata.Tests
             (int rowPlayedByO, int firstColumnPlayedByO, int secondColumnPlayedByO) = (1, 1, 2);
 
             // Act
-            game.TakeField(rowPlayedByX, columnPlayedByX, PlayerType.X);
-            game.TakeField(rowPlayedByO, firstColumnPlayedByO, PlayerType.O);
-            game.TakeField(rowPlayedByO, secondColumnPlayedByO, PlayerType.O);
+            game.TakeField(rowPlayedByX, columnPlayedByX, Player.PlayerType.X);
+            game.TakeField(rowPlayedByO, firstColumnPlayedByO, Player.PlayerType.O);
+            game.TakeField(rowPlayedByO, secondColumnPlayedByO, Player.PlayerType.O);
 
             // Assert
             Assert.AreEqual<int>(2, game.NumberOfFieldsPlayed);
@@ -83,12 +83,12 @@ namespace TicTacToeKata.Tests
             (int rowPlayedByO, int columnPlayedByO) = (1, 1);
 
             // Act
-            game.TakeField(rowPlayedByX, columnPlayedByX, PlayerType.X);
-            game.TakeField(rowPlayedByO, columnPlayedByO, PlayerType.O);
+            game.TakeField(rowPlayedByX, columnPlayedByX, Player.PlayerType.X);
+            game.TakeField(rowPlayedByO, columnPlayedByO, Player.PlayerType.O);
 
             // Assert
             Assert.AreEqual<int>(1, game.NumberOfFieldsPlayed);
-            Assert.AreEqual<PlayerType>(PlayerType.O, game.CurrentPlayer);
+            Assert.AreEqual<Player.PlayerType>(Player.PlayerType.O, game.CurrentPlayer);
         }
 
         [TestMethod]
@@ -98,7 +98,7 @@ namespace TicTacToeKata.Tests
             (int rowPlayed, int columnPlayed) = (4, 1);
 
             // Act
-            game.TakeField(rowPlayed, columnPlayed, PlayerType.X);
+            game.TakeField(rowPlayed, columnPlayed, Player.PlayerType.X);
 
             // Assert
             Assert.AreEqual<int>(0, game.NumberOfFieldsPlayed);
@@ -111,7 +111,7 @@ namespace TicTacToeKata.Tests
             (int rowPlayed, int columnPlayed) = (1, 4);
 
             // Act
-            game.TakeField(rowPlayed, columnPlayed, PlayerType.X);
+            game.TakeField(rowPlayed, columnPlayed, Player.PlayerType.X);
 
             // Assert
             Assert.AreEqual<int>(0, game.NumberOfFieldsPlayed);
@@ -129,15 +129,15 @@ namespace TicTacToeKata.Tests
 
         private void GivenThatAllFieldsAreTaken()
         {
-            game.TakeField(1, 1, PlayerType.X);
-            game.TakeField(1, 2, PlayerType.O);
-            game.TakeField(1, 3, PlayerType.X);
-            game.TakeField(2, 1, PlayerType.O);
-            game.TakeField(2, 2, PlayerType.X);
-            game.TakeField(2, 3, PlayerType.O);
-            game.TakeField(3, 1, PlayerType.X);
-            game.TakeField(3, 2, PlayerType.O);
-            game.TakeField(3, 3, PlayerType.X);
+            game.TakeField(1, 1, Player.PlayerType.X);
+            game.TakeField(1, 2, Player.PlayerType.O);
+            game.TakeField(1, 3, Player.PlayerType.X);
+            game.TakeField(2, 1, Player.PlayerType.O);
+            game.TakeField(2, 2, Player.PlayerType.X);
+            game.TakeField(2, 3, Player.PlayerType.O);
+            game.TakeField(3, 1, Player.PlayerType.X);
+            game.TakeField(3, 2, Player.PlayerType.O);
+            game.TakeField(3, 3, Player.PlayerType.X);
         }
     }
 }

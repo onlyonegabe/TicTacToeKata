@@ -2,6 +2,8 @@
 {
     public class Player
     {
+        public enum PlayerType { X, O };
+
         public PlayerType Current;
 
         public void ChangeTurn()
