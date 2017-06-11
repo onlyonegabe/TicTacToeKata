@@ -30,17 +30,19 @@ namespace TicTacToeKata
         private void TakeTurn()
         {
             fieldsPlayed.Add(field);
-            ActivePlayer = Change(ActivePlayer);
+            ChangePlayer();
         }
 
-        private Player Change(Player playerType)
+        private void ChangePlayer()
         {
-            if (playerType == Player.X)
+            if (ActivePlayer == Player.X)
             {
-                return Player.O;
+                ActivePlayer = Player.O;
             }
-
-            return Player.X;
+            else
+            {
+                ActivePlayer = Player.X;
+            }
         }        
 
         private bool IsActive(Player player)
