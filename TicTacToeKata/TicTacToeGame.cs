@@ -11,10 +11,11 @@ namespace TicTacToeKata
         public Player ActivePlayer { get; private set;  } 
         public int CountOfFieldsPlayed { get { return fieldsPlayed.Count; } }
         public bool IsOver { get; private set; }
+        public Player Winner { get; private set; }
 
         public void TakeField(int row, int column, Player player)
         {
-            field = new Field { Row = row, Column = column };
+            field = new Field { Row = row, Column = column, TakenBy = player };
 
             if (IsMoveValid() && (IsActive(player)))
             {
@@ -25,7 +26,38 @@ namespace TicTacToeKata
             {
                 IsOver = true;
             }
-        }                
+            
+            DetermineWinner(Player.X);
+            DetermineWinner(Player.O);            
+        }
+
+        private void DetermineWinner(Player player)
+        {
+            int rowOneCount = 0;
+            int rowTwoCount = 0;
+            int rowThreeCount = 0;
+            foreach (var field in fieldsPlayed)
+            {
+                if (field.Row == 1 && field.TakenBy == player)
+                {
+                    rowOneCount++;
+                }
+                if (field.Row == 2 && field.TakenBy == player)
+                {
+                    rowTwoCount++;
+                }
+                if (field.Row == 3 && field.TakenBy == player)
+                {
+                    rowThreeCount++;
+                }
+            }
+
+            if (rowOneCount == 3 || rowTwoCount == 3 || rowThreeCount == 3)
+            {
+                IsOver = true;
+                Winner = player;
+            }
+        }
 
         private void TakeTurn()
         {

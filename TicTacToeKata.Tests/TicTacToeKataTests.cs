@@ -119,5 +119,36 @@ namespace TicTacToeKata.Tests
             game.TakeField(3, 2, Player.O);
             game.TakeField(3, 3, Player.X);
         }
+
+        [TestMethod]
+        public void RowTakenByPlayerXWinsGame()
+        {
+            // Act
+            game.TakeField(2, 1, Player.X);
+            game.TakeField(3, 1, Player.O);
+            game.TakeField(2, 2, Player.X);
+            game.TakeField(1, 2, Player.O);
+            game.TakeField(2, 3, Player.X);
+
+            // Assert
+            Assert.AreEqual<bool>(true, game.IsOver);
+            Assert.AreEqual<Player>(Player.X, game.Winner);
+        }
+
+        [TestMethod]
+        public void RowTakenByPlayerOWinsGame()
+        {
+            // Act
+            game.TakeField(2, 1, Player.X);
+            game.TakeField(3, 1, Player.O);
+            game.TakeField(2, 2, Player.X);
+            game.TakeField(3, 2, Player.O);
+            game.TakeField(1, 3, Player.X);
+            game.TakeField(3, 3, Player.O);
+
+            // Assert
+            Assert.AreEqual<bool>(true, game.IsOver);
+            Assert.AreEqual<Player>(Player.O, game.Winner);
+        }
     }
 }
