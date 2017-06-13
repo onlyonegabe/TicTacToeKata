@@ -8,7 +8,7 @@ namespace TicTacToeKata
         private Field field;
         private List<Field> fieldsPlayed = new List<Field>();
 
-        public Player ActivePlayer { get; private set;  } 
+        public Player ActivePlayer { get; private set; }
         public int CountOfFieldsPlayed { get { return fieldsPlayed.Count; } }
         public bool IsOver { get; private set; }
         public Player Winner { get; private set; }
@@ -26,12 +26,12 @@ namespace TicTacToeKata
             {
                 IsOver = true;
             }
-            
-            DetermineWinner(Player.X);
-            DetermineWinner(Player.O);            
+
+            DetermineWinnerByRow(Player.X);
+            DetermineWinnerByRow(Player.O);
         }
 
-        private void DetermineWinner(Player player)
+        private void DetermineWinnerByRow(Player player)
         {
             int rowOneCount = 0;
             int rowTwoCount = 0;
@@ -75,7 +75,7 @@ namespace TicTacToeKata
             {
                 ActivePlayer = Player.X;
             }
-        }        
+        }
 
         private bool IsActive(Player player)
         {
