@@ -26,43 +26,25 @@ namespace TicTacToeKata
             {
                 IsOver = true;
             }
-
-            DetermineWinnerByRow(Player.X);
-            DetermineWinnerByRow(Player.O);
-        }
-
-        private void DetermineWinnerByRow(Player player)
-        {
-            int rowOneCount = 0;
-            int rowTwoCount = 0;
-            int rowThreeCount = 0;
-            foreach (var field in fieldsPlayed)
-            {
-                if (field.Row == 1 && field.TakenBy == player)
-                {
-                    rowOneCount++;
-                }
-                if (field.Row == 2 && field.TakenBy == player)
-                {
-                    rowTwoCount++;
-                }
-                if (field.Row == 3 && field.TakenBy == player)
-                {
-                    rowThreeCount++;
-                }
-            }
-
-            if (rowOneCount == 3 || rowTwoCount == 3 || rowThreeCount == 3)
-            {
-                IsOver = true;
-                Winner = player;
-            }
         }
 
         private void TakeTurn()
         {
             fieldsPlayed.Add(field);
+            DetermineIfGameIsWon();
             ChangePlayer();
+        }
+
+        private bool DetermineIfGameIsWon()
+        {
+            if (fieldsPlayed.Where(x => x.TakenBy == ActivePlayer).GroupBy(x => x.Row).Any(x => x.Count() == 3))
+            {
+                IsOver = true;
+                Winner = ActivePlayer;
+                return true;
+            }
+
+            return false;
         }
 
         private void ChangePlayer()
