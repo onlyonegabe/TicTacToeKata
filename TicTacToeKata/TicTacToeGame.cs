@@ -15,6 +15,11 @@ namespace TicTacToeKata
 
         public void TakeField(int row, int column, Player player)
         {
+            if (IsOver)
+            {
+                return;
+            }
+
             field = new Field { Row = row, Column = column, TakenBy = player };
 
             if (IsMoveValid() && (IsActive(player)))
@@ -31,13 +36,16 @@ namespace TicTacToeKata
         private void TakeTurn()
         {
             fieldsPlayed.Add(field);
-            DetermineIfGameIsWon();
+            if (IsGameWon())
+            {
+                return;
+            }
             ChangePlayer();
         }
 
-        private bool DetermineIfGameIsWon()
+        private bool IsGameWon()
         {
-            if (fieldsPlayed.Where(x => x.TakenBy == ActivePlayer).GroupBy(x => x.Row).Any(x => x.Count() == 3))
+            if (IsGameWonByRowsPlayedByActivePlayer())
             {
                 IsOver = true;
                 Winner = ActivePlayer;
@@ -45,6 +53,11 @@ namespace TicTacToeKata
             }
 
             return false;
+        }
+
+        private bool IsGameWonByRowsPlayedByActivePlayer()
+        {
+            return fieldsPlayed.Where(x => x.TakenBy == ActivePlayer).GroupBy(x => x.Row).Any(x => x.Count() == 3);
         }
 
         private void ChangePlayer()

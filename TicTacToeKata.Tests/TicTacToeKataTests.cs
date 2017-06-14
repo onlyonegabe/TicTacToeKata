@@ -124,31 +124,52 @@ namespace TicTacToeKata.Tests
         public void RowTakenByPlayerXWinsGame()
         {
             // Act
-            game.TakeField(2, 1, Player.X);
-            game.TakeField(3, 1, Player.O);
-            game.TakeField(2, 2, Player.X);
-            game.TakeField(1, 2, Player.O);
-            game.TakeField(2, 3, Player.X);
+            WhenPlayerXWinsGameByRow();
 
             // Assert
             Assert.AreEqual<bool>(true, game.IsOver);
             Assert.AreEqual<Player>(Player.X, game.Winner);
-        }
+        }        
 
         [TestMethod]
         public void RowTakenByPlayerOWinsGame()
         {
             // Act
-            game.TakeField(2, 1, Player.X);
-            game.TakeField(3, 1, Player.O);
-            game.TakeField(2, 2, Player.X);
-            game.TakeField(3, 2, Player.O);
-            game.TakeField(1, 3, Player.X);
-            game.TakeField(3, 3, Player.O);
+            WhenPlayerOWinsGameByRow();
 
             // Assert
             Assert.AreEqual<bool>(true, game.IsOver);
             Assert.AreEqual<Player>(Player.O, game.Winner);
+        }
+
+        private void WhenPlayerOWinsGameByRow()
+        {
+            game.TakeField(1, 1, Player.X);
+            game.TakeField(2, 1, Player.O);
+            game.TakeField(3, 2, Player.X);
+            game.TakeField(2, 2, Player.O);
+            game.TakeField(1, 3, Player.X);
+            game.TakeField(2, 3, Player.O);
+        }
+
+        [TestMethod]
+        public void FieldsCannotBeTakenWhenGameIsWon()
+        {
+            // Act
+            WhenPlayerXWinsGameByRow();
+            game.TakeField(3, 3, Player.O);
+
+            // Assert
+            Assert.AreEqual<int>(5, game.CountOfFieldsPlayed);
+        }
+
+        private void WhenPlayerXWinsGameByRow()
+        {
+            game.TakeField(1, 1, Player.X);
+            game.TakeField(3, 1, Player.O);
+            game.TakeField(1, 2, Player.X);
+            game.TakeField(2, 2, Player.O);
+            game.TakeField(1, 3, Player.X);
         }
     }
 }
