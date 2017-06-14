@@ -39,7 +39,7 @@ namespace TicTacToeKata
                 return;
             }
 
-            if (AllFieldsPlayed())
+            if (AreAllFieldsPlayed())
             {
                 IsOver = true;
                 Winner = null;
@@ -49,7 +49,7 @@ namespace TicTacToeKata
             ChangePlayer();
         }
 
-        private bool AllFieldsPlayed()
+        private bool AreAllFieldsPlayed()
         {
             return fieldsPlayed.Count == 9;
         }
