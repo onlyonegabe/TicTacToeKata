@@ -105,6 +105,7 @@ namespace TicTacToeKata.Tests
 
             // Assert
             Assert.AreEqual<bool>(true, game.IsOver);
+            Assert.AreEqual(null, game.Winner);
         }
 
         private void WhenAllFieldsAreTaken()
@@ -128,7 +129,7 @@ namespace TicTacToeKata.Tests
 
             // Assert
             Assert.AreEqual<bool>(true, game.IsOver);
-            Assert.AreEqual<Player>(Player.X, game.Winner);
+            Assert.AreEqual<Player?>(Player.X, game.Winner);
         }        
 
         [TestMethod]
@@ -139,7 +140,7 @@ namespace TicTacToeKata.Tests
 
             // Assert
             Assert.AreEqual<bool>(true, game.IsOver);
-            Assert.AreEqual<Player>(Player.O, game.Winner);
+            Assert.AreEqual<Player?>(Player.O, game.Winner);
         }
 
         private void WhenPlayerOWinsGameByRow()
@@ -180,7 +181,7 @@ namespace TicTacToeKata.Tests
 
             // Assert
             Assert.AreEqual<bool>(true, game.IsOver);
-            Assert.AreEqual<Player>(Player.X, game.Winner);
+            Assert.AreEqual<Player?>(Player.X, game.Winner);
         }
 
         private void WhenPlayerXWinsGameByColumn()

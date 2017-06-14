@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace TicTacToeKata
@@ -12,7 +11,7 @@ namespace TicTacToeKata
         public Player ActivePlayer { get; private set; }
         public int CountOfFieldsPlayed { get { return fieldsPlayed.Count; } }
         public bool IsOver { get; private set; }
-        public Player Winner { get; private set; }
+        public Player? Winner { get; private set; }
 
         public void TakeField(int row, int column, Player player)
         {
@@ -23,7 +22,7 @@ namespace TicTacToeKata
 
             field = new Field { Row = row, Column = column, TakenBy = player };
 
-            if (IsMoveValid() && (IsActive(player)))
+            if ((IsActive(player)) && IsMoveValid())
             {
                 TakeTurn();
             }            
@@ -35,12 +34,15 @@ namespace TicTacToeKata
 
             if (IsGameWon())
             {
+                IsOver = true;
+                Winner = ActivePlayer;
                 return;
             }
 
             if (AllFieldsPlayed())
             {
                 IsOver = true;
+                Winner = null;
                 return;
             }
 
@@ -56,8 +58,6 @@ namespace TicTacToeKata
         {
             if (IsGameWonByRow() || IsGameWonByColumn())
             {
-                IsOver = true;
-                Winner = ActivePlayer;
                 return true;
             }
 
