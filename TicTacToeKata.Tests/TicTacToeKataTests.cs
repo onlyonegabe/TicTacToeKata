@@ -171,5 +171,25 @@ namespace TicTacToeKata.Tests
             game.TakeField(2, 2, Player.O);
             game.TakeField(1, 3, Player.X);
         }
+
+        [TestMethod]
+        public void ColumnTakenByPlayerXWinsGame()
+        {
+            // Act
+            WhenPlayerXWinsGameByColumn();
+
+            // Assert
+            Assert.AreEqual<bool>(true, game.IsOver);
+            Assert.AreEqual<Player>(Player.X, game.Winner);
+        }
+
+        private void WhenPlayerXWinsGameByColumn()
+        {
+            game.TakeField(1, 1, Player.X);
+            game.TakeField(3, 2, Player.O);
+            game.TakeField(2, 1, Player.X);
+            game.TakeField(2, 2, Player.O);
+            game.TakeField(3, 1, Player.X);
+        }
     }
 }

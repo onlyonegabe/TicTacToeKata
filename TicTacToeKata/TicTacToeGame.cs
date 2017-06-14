@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TicTacToeKata
@@ -25,27 +26,35 @@ namespace TicTacToeKata
             if (IsMoveValid() && (IsActive(player)))
             {
                 TakeTurn();
-            }
-
-            if (fieldsPlayed.Count == 9)
-            {
-                IsOver = true;
-            }
+            }            
         }
 
         private void TakeTurn()
         {
             fieldsPlayed.Add(field);
+
             if (IsGameWon())
             {
                 return;
             }
+
+            if (AllFieldsPlayed())
+            {
+                IsOver = true;
+                return;
+            }
+
             ChangePlayer();
+        }
+
+        private bool AllFieldsPlayed()
+        {
+            return fieldsPlayed.Count == 9;
         }
 
         private bool IsGameWon()
         {
-            if (IsGameWonByRowsPlayedByActivePlayer())
+            if (IsGameWonByRow() || IsGameWonByColumn())
             {
                 IsOver = true;
                 Winner = ActivePlayer;
@@ -55,7 +64,12 @@ namespace TicTacToeKata
             return false;
         }
 
-        private bool IsGameWonByRowsPlayedByActivePlayer()
+        private bool IsGameWonByColumn()
+        {
+            return fieldsPlayed.Where(x => x.TakenBy == ActivePlayer).GroupBy(x => x.Column).Any(x => x.Count() == 3);
+        }
+
+        private bool IsGameWonByRow()
         {
             return fieldsPlayed.Where(x => x.TakenBy == ActivePlayer).GroupBy(x => x.Row).Any(x => x.Count() == 3);
         }
