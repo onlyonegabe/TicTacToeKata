@@ -212,5 +212,26 @@ namespace TicTacToeKata.Tests
             game.TakeField(2, 1, Player.O);
             game.TakeField(3, 3, Player.X);
         }
+
+        [TestMethod]
+        public void UpDiagonalTakenByPlayerOWinsGame()
+        {
+            // Act
+            WhenPlayerOWinsGameByUpDiagonal();
+
+            // Assert
+            Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
+            Assert.AreEqual<Player?>(Player.O, game.Winner, "Player O is winner");
+        }
+
+        private void WhenPlayerOWinsGameByUpDiagonal()
+        {
+            game.TakeField(3, 2, Player.X);
+            game.TakeField(3, 1, Player.O);
+            game.TakeField(1, 1, Player.X);
+            game.TakeField(2, 2, Player.O);
+            game.TakeField(1, 2, Player.X);
+            game.TakeField(1, 3, Player.O);
+        }
     }
 }

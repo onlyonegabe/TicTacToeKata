@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TicTacToeKata
@@ -56,12 +57,19 @@ namespace TicTacToeKata
 
         private bool IsGameWon()
         {
-            if (IsWonByRow() || IsWonByColumn() || IsWonByDownDiagonal())
+            if (IsWonByRow() || IsWonByColumn() || IsWonByDownDiagonal() || IsWonByUpDiagonal())
             {
                 return true;
             }
 
             return false;
+        }
+
+        private bool IsWonByUpDiagonal()
+        {
+            return fieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Row == 3 && x.Column == 1).Any()
+                && fieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Row == 2 && x.Column == 2).Any()
+                && fieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Row == 1 && x.Column == 3).Any();
         }
 
         private bool IsWonByDownDiagonal()
