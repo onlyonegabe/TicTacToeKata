@@ -67,8 +67,8 @@ namespace TicTacToeKata.Tests
             WhenPlayerTriesToTakeAFieldAlreadyTaken();
 
             // Assert
-            Assert.AreEqual<int>(1, game.CountOfFieldsPlayed);
-            Assert.AreEqual<Player>(Player.O, game.ActivePlayer);
+            Assert.AreEqual<int>(1, game.CountOfFieldsPlayed, "One field played");
+            Assert.AreEqual<Player>(Player.O, game.ActivePlayer, "Active player is O");
         }
 
         private void WhenPlayerTriesToTakeAFieldAlreadyTaken()
@@ -104,8 +104,8 @@ namespace TicTacToeKata.Tests
             WhenAllFieldsAreTaken();
 
             // Assert
-            Assert.AreEqual<bool>(true, game.IsOver);
-            Assert.AreEqual(null, game.Winner);
+            Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
+            Assert.AreEqual(null, game.Winner, "No winner");
         }
 
         private void WhenAllFieldsAreTaken()
@@ -128,8 +128,8 @@ namespace TicTacToeKata.Tests
             WhenPlayerXWinsGameByRow();
 
             // Assert
-            Assert.AreEqual<bool>(true, game.IsOver);
-            Assert.AreEqual<Player?>(Player.X, game.Winner);
+            Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
+            Assert.AreEqual<Player?>(Player.X, game.Winner, "Player X is winner");
         }        
 
         [TestMethod]
@@ -139,8 +139,8 @@ namespace TicTacToeKata.Tests
             WhenPlayerOWinsGameByRow();
 
             // Assert
-            Assert.AreEqual<bool>(true, game.IsOver);
-            Assert.AreEqual<Player?>(Player.O, game.Winner);
+            Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
+            Assert.AreEqual<Player?>(Player.O, game.Winner, "Player O is winner");
         }
 
         private void WhenPlayerOWinsGameByRow()
@@ -180,8 +180,8 @@ namespace TicTacToeKata.Tests
             WhenPlayerXWinsGameByColumn();
 
             // Assert
-            Assert.AreEqual<bool>(true, game.IsOver);
-            Assert.AreEqual<Player?>(Player.X, game.Winner);
+            Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
+            Assert.AreEqual<Player?>(Player.X, game.Winner, "Player X is winner");
         }
 
         private void WhenPlayerXWinsGameByColumn()
@@ -200,8 +200,8 @@ namespace TicTacToeKata.Tests
             WhenPlayerXWinsGameByDownDiagonal();
 
             // Assert
-            Assert.AreEqual<bool>(true, game.IsOver);
-            Assert.AreEqual<Player?>(Player.X, game.Winner);
+            Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
+            Assert.AreEqual<Player?>(Player.X, game.Winner, "Player X is winner");
         }
 
         private void WhenPlayerXWinsGameByDownDiagonal()
