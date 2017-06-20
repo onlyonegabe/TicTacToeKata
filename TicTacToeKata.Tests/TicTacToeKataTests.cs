@@ -110,12 +110,12 @@ namespace TicTacToeKata.Tests
 
         private void WhenAllFieldsAreTaken()
         {
-            game.TakeField(1, 1, Player.X);
-            game.TakeField(1, 2, Player.O);
-            game.TakeField(1, 3, Player.X);
-            game.TakeField(2, 1, Player.O);
+            game.TakeField(1, 2, Player.X);
+            game.TakeField(1, 1, Player.O);
             game.TakeField(2, 2, Player.X);
-            game.TakeField(2, 3, Player.O);
+            game.TakeField(1, 3, Player.O);
+            game.TakeField(2, 3, Player.X);
+            game.TakeField(2, 1, Player.O);
             game.TakeField(3, 1, Player.X);
             game.TakeField(3, 2, Player.O);
             game.TakeField(3, 3, Player.X);
@@ -191,6 +191,26 @@ namespace TicTacToeKata.Tests
             game.TakeField(2, 1, Player.X);
             game.TakeField(2, 2, Player.O);
             game.TakeField(3, 1, Player.X);
+        }
+
+        [TestMethod]
+        public void DownDiagonalTakenByPlayerXWinsGame()
+        {
+            // Act
+            WhenPlayerXWinsGameByDownDiagonal();
+
+            // Assert
+            Assert.AreEqual<bool>(true, game.IsOver);
+            Assert.AreEqual<Player?>(Player.X, game.Winner);
+        }
+
+        private void WhenPlayerXWinsGameByDownDiagonal()
+        {
+            game.TakeField(1, 1, Player.X);
+            game.TakeField(1, 2, Player.O);
+            game.TakeField(2, 2, Player.X);
+            game.TakeField(2, 1, Player.O);
+            game.TakeField(3, 3, Player.X);
         }
     }
 }

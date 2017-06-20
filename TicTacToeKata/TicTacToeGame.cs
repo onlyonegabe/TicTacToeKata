@@ -56,7 +56,7 @@ namespace TicTacToeKata
 
         private bool IsGameWon()
         {
-            if (IsGameWonByRow() || IsGameWonByColumn())
+            if (IsWonByRow() || IsWonByColumn() || IsWonByDownDiagonal())
             {
                 return true;
             }
@@ -64,12 +64,19 @@ namespace TicTacToeKata
             return false;
         }
 
-        private bool IsGameWonByColumn()
+        private bool IsWonByDownDiagonal()
+        {
+            return fieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Row == 1  && x.Column == 1).Any()
+                && fieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Row == 2 && x.Column == 2).Any()
+                && fieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Row == 3 && x.Column == 3).Any();
+        }
+
+        private bool IsWonByColumn()
         {
             return fieldsPlayed.Where(x => x.TakenBy == ActivePlayer).GroupBy(x => x.Column).Any(x => x.Count() == 3);
         }
 
-        private bool IsGameWonByRow()
+        private bool IsWonByRow()
         {
             return fieldsPlayed.Where(x => x.TakenBy == ActivePlayer).GroupBy(x => x.Row).Any(x => x.Count() == 3);
         }
