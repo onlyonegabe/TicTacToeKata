@@ -92,7 +92,7 @@ namespace TicTacToeKata.Tests
         }        
 
         [TestMethod]
-        public void RowTakenByPlayerXWinsGame()
+        public void PlayerWinsByRow()
         {
             // Act
             WhenPlayerXWinsGameByRow();
@@ -100,18 +100,7 @@ namespace TicTacToeKata.Tests
             // Assert
             Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
             Assert.AreEqual<Player?>(Player.X, game.Winner, "Player X is winner");
-        }        
-
-        [TestMethod]
-        public void RowTakenByPlayerOWinsGame()
-        {
-            // Act
-            WhenPlayerOWinsGameByRow();
-
-            // Assert
-            Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
-            Assert.AreEqual<Player?>(Player.O, game.Winner, "Player O is winner");
-        }        
+        }               
 
         [TestMethod]
         public void FieldsCannotBeTakenWhenGameIsWon()
@@ -125,7 +114,7 @@ namespace TicTacToeKata.Tests
         }        
 
         [TestMethod]
-        public void ColumnTakenByPlayerXWinsGame()
+        public void PlayerWinsByColumn()
         {
             // Act
             WhenPlayerXWinsGameByColumn();
@@ -201,16 +190,6 @@ namespace TicTacToeKata.Tests
             game.TakeField(3, 1, Player.X);
             game.TakeField(3, 2, Player.O);
             game.TakeField(3, 3, Player.X);
-        }
-
-        private void WhenPlayerOWinsGameByRow()
-        {
-            game.TakeField(1, 1, Player.X);
-            game.TakeField(2, 1, Player.O);
-            game.TakeField(3, 2, Player.X);
-            game.TakeField(2, 2, Player.O);
-            game.TakeField(1, 3, Player.X);
-            game.TakeField(2, 3, Player.O);
         }
 
         private void WhenPlayerXWinsGameByRow()
