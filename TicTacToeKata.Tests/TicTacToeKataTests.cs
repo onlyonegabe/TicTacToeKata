@@ -65,24 +65,20 @@ namespace TicTacToeKata.Tests
         }        
 
         [TestMethod]
-        public void RowCannotBeGreaterThan3()
+        public void OutOfBounds()
         {
-            // Act
-            game.TakeField(4, 1, Player.X);
-
-            // Assert
+            WhenRowIsTooBig();
             Assert.AreEqual<int>(0, game.CountOfFieldsPlayed);
-        }
 
-        [TestMethod]
-        public void ColumnCannotBeGreaterThan3()
-        {
-            // Act
-            game.TakeField(1, 4, Player.X);
-
-            // Assert
+            WhenColumnIsTooBig();
             Assert.AreEqual<int>(0, game.CountOfFieldsPlayed);
-        }
+
+            WhenRowIsTooSmall();
+            Assert.AreEqual<int>(0, game.CountOfFieldsPlayed);
+
+            WhenColumnIsTooSmall();
+            Assert.AreEqual<int>(0, game.CountOfFieldsPlayed);
+        }        
 
         [TestMethod]
         public void GameIsOverWhenAllFieldsAreTaken()
@@ -159,6 +155,26 @@ namespace TicTacToeKata.Tests
             // Assert
             Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
             Assert.AreEqual<Player?>(Player.O, game.Winner, "Player O is winner");
+        }
+
+        private void WhenColumnIsTooSmall()
+        {
+            game.TakeField(1, -1, Player.X);
+        }
+
+        private void WhenRowIsTooSmall()
+        {
+            game.TakeField(-1, 1, Player.X);
+        }
+
+        private void WhenColumnIsTooBig()
+        {
+            game.TakeField(1, 4, Player.X);
+        }
+
+        private void WhenRowIsTooBig()
+        {
+            game.TakeField(4, 1, Player.X);
         }
 
         private void WhenPlayerTriesToPlayConsecutively()

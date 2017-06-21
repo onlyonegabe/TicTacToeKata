@@ -112,7 +112,7 @@ namespace TicTacToeKata
 
         private bool IsMoveValid()
         {
-            return !(field.Row > 3 || field.Column > 3 || HasFieldBeenTaken());
+            return !(field.Row < 1 || field.Row > 3 || field.Column < 1 || field.Column > 3 || HasFieldBeenTaken());
         }
 
         private bool HasFieldBeenTaken()
