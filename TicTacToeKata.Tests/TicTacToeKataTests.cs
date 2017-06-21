@@ -51,14 +51,7 @@ namespace TicTacToeKata.Tests
 
             // Assert
             Assert.AreEqual<int>(2, game.CountOfFieldsPlayed);
-        }
-
-        private void WhenPlayerTriesToPlayConsecutively()
-        {
-            game.TakeField(2, 1, Player.X);
-            game.TakeField(1, 1, Player.O);
-            game.TakeField(1, 2, Player.O);
-        }
+        }        
 
         [TestMethod]
         public void PlayerCannotTakeAFieldAlreadyTaken()
@@ -69,13 +62,7 @@ namespace TicTacToeKata.Tests
             // Assert
             Assert.AreEqual<int>(1, game.CountOfFieldsPlayed, "One field played");
             Assert.AreEqual<Player>(Player.O, game.ActivePlayer, "Active player is O");
-        }
-
-        private void WhenPlayerTriesToTakeAFieldAlreadyTaken()
-        {
-            game.TakeField(1, 1, Player.X);
-            game.TakeField(1, 1, Player.O);
-        }
+        }        
 
         [TestMethod]
         public void RowCannotBeGreaterThan3()
@@ -106,20 +93,7 @@ namespace TicTacToeKata.Tests
             // Assert
             Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
             Assert.AreEqual(null, game.Winner, "No winner");
-        }
-
-        private void WhenAllFieldsAreTaken()
-        {
-            game.TakeField(1, 2, Player.X);
-            game.TakeField(1, 1, Player.O);
-            game.TakeField(2, 2, Player.X);
-            game.TakeField(1, 3, Player.O);
-            game.TakeField(2, 3, Player.X);
-            game.TakeField(2, 1, Player.O);
-            game.TakeField(3, 1, Player.X);
-            game.TakeField(3, 2, Player.O);
-            game.TakeField(3, 3, Player.X);
-        }
+        }        
 
         [TestMethod]
         public void RowTakenByPlayerXWinsGame()
@@ -141,6 +115,76 @@ namespace TicTacToeKata.Tests
             // Assert
             Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
             Assert.AreEqual<Player?>(Player.O, game.Winner, "Player O is winner");
+        }        
+
+        [TestMethod]
+        public void FieldsCannotBeTakenWhenGameIsWon()
+        {
+            // Act
+            WhenPlayerXWinsGameByRow();
+            game.TakeField(3, 3, Player.O);
+
+            // Assert
+            Assert.AreEqual<int>(5, game.CountOfFieldsPlayed);
+        }        
+
+        [TestMethod]
+        public void ColumnTakenByPlayerXWinsGame()
+        {
+            // Act
+            WhenPlayerXWinsGameByColumn();
+
+            // Assert
+            Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
+            Assert.AreEqual<Player?>(Player.X, game.Winner, "Player X is winner");
+        }        
+
+        [TestMethod]
+        public void DownDiagonalTakenByPlayerXWinsGame()
+        {
+            // Act
+            WhenPlayerXWinsGameByDownDiagonal();
+
+            // Assert
+            Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
+            Assert.AreEqual<Player?>(Player.X, game.Winner, "Player X is winner");
+        }        
+
+        [TestMethod]
+        public void UpDiagonalTakenByPlayerOWinsGame()
+        {
+            // Act
+            WhenPlayerOWinsGameByUpDiagonal();
+
+            // Assert
+            Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
+            Assert.AreEqual<Player?>(Player.O, game.Winner, "Player O is winner");
+        }
+
+        private void WhenPlayerTriesToPlayConsecutively()
+        {
+            game.TakeField(2, 1, Player.X);
+            game.TakeField(1, 1, Player.O);
+            game.TakeField(1, 2, Player.O);
+        }
+
+        private void WhenPlayerTriesToTakeAFieldAlreadyTaken()
+        {
+            game.TakeField(1, 1, Player.X);
+            game.TakeField(1, 1, Player.O);
+        }
+
+        private void WhenAllFieldsAreTaken()
+        {
+            game.TakeField(1, 2, Player.X);
+            game.TakeField(1, 1, Player.O);
+            game.TakeField(2, 2, Player.X);
+            game.TakeField(1, 3, Player.O);
+            game.TakeField(2, 3, Player.X);
+            game.TakeField(2, 1, Player.O);
+            game.TakeField(3, 1, Player.X);
+            game.TakeField(3, 2, Player.O);
+            game.TakeField(3, 3, Player.X);
         }
 
         private void WhenPlayerOWinsGameByRow()
@@ -153,17 +197,6 @@ namespace TicTacToeKata.Tests
             game.TakeField(2, 3, Player.O);
         }
 
-        [TestMethod]
-        public void FieldsCannotBeTakenWhenGameIsWon()
-        {
-            // Act
-            WhenPlayerXWinsGameByRow();
-            game.TakeField(3, 3, Player.O);
-
-            // Assert
-            Assert.AreEqual<int>(5, game.CountOfFieldsPlayed);
-        }
-
         private void WhenPlayerXWinsGameByRow()
         {
             game.TakeField(1, 1, Player.X);
@@ -171,17 +204,6 @@ namespace TicTacToeKata.Tests
             game.TakeField(1, 2, Player.X);
             game.TakeField(2, 2, Player.O);
             game.TakeField(1, 3, Player.X);
-        }
-
-        [TestMethod]
-        public void ColumnTakenByPlayerXWinsGame()
-        {
-            // Act
-            WhenPlayerXWinsGameByColumn();
-
-            // Assert
-            Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
-            Assert.AreEqual<Player?>(Player.X, game.Winner, "Player X is winner");
         }
 
         private void WhenPlayerXWinsGameByColumn()
@@ -193,17 +215,6 @@ namespace TicTacToeKata.Tests
             game.TakeField(3, 1, Player.X);
         }
 
-        [TestMethod]
-        public void DownDiagonalTakenByPlayerXWinsGame()
-        {
-            // Act
-            WhenPlayerXWinsGameByDownDiagonal();
-
-            // Assert
-            Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
-            Assert.AreEqual<Player?>(Player.X, game.Winner, "Player X is winner");
-        }
-
         private void WhenPlayerXWinsGameByDownDiagonal()
         {
             game.TakeField(1, 1, Player.X);
@@ -211,17 +222,6 @@ namespace TicTacToeKata.Tests
             game.TakeField(2, 2, Player.X);
             game.TakeField(2, 1, Player.O);
             game.TakeField(3, 3, Player.X);
-        }
-
-        [TestMethod]
-        public void UpDiagonalTakenByPlayerOWinsGame()
-        {
-            // Act
-            WhenPlayerOWinsGameByUpDiagonal();
-
-            // Assert
-            Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
-            Assert.AreEqual<Player?>(Player.O, game.Winner, "Player O is winner");
         }
 
         private void WhenPlayerOWinsGameByUpDiagonal()
