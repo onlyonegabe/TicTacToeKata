@@ -1,18 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
 namespace TicTacToeKata
 {
     public class TicTacToeGame
     {
         private Field field;
-        private List<Field> fieldsPlayed = new List<Field>();
+        private Board board = new Board();
 
         public Player ActivePlayer { get; private set; }
-        public int CountOfFieldsPlayed { get { return fieldsPlayed.Count; } }
+        public int CountOfFieldsPlayed { get { return board.CountOfFieldsPlayed; } }
         public bool IsOver { get; private set; }
         public Player? Winner { get; private set; }
-        
+
         public void TakeField(Intersection intersection, Player player)
         {
             if (IsOver)
@@ -24,13 +23,13 @@ namespace TicTacToeKata
 
             if ((IsActive(player)) && IsMoveValid())
             {
-                TakeTurn();
+                TakeTurn(intersection, player);
             }            
         }
-
-        private void TakeTurn()
+        
+        private void TakeTurn(Intersection intersection, Player player)
         {
-            fieldsPlayed.Add(field);
+            board.Place(intersection, player);
 
             if (IsGameWon())
             {
@@ -51,8 +50,8 @@ namespace TicTacToeKata
 
         private bool AreAllFieldsPlayed()
         {
-            return fieldsPlayed.Count == 9;
-        }
+            return board.CountOfFieldsPlayed == 9;
+        }        
 
         private bool IsGameWon()
         {
@@ -71,26 +70,26 @@ namespace TicTacToeKata
 
         private bool IsWonByUpDiagonal()
         {
-            return fieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Intersection.Row == 3 && x.Intersection.Column == 1).Any()
-                && fieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Intersection.Row == 2 && x.Intersection.Column == 2).Any()
-                && fieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Intersection.Row == 1 && x.Intersection.Column == 3).Any();
+            return board.FieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Intersection.Row == 3 && x.Intersection.Column == 1).Any()
+                && board.FieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Intersection.Row == 2 && x.Intersection.Column == 2).Any()
+                && board.FieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Intersection.Row == 1 && x.Intersection.Column == 3).Any();
         }
 
         private bool IsWonByDownDiagonal()
         {
-            return fieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Intersection.Row == 1  && x.Intersection.Column == 1).Any()
-                && fieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Intersection.Row == 2 && x.Intersection.Column == 2).Any()
-                && fieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Intersection.Row == 3 && x.Intersection.Column == 3).Any();
+            return board.FieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Intersection.Row == 1  && x.Intersection.Column == 1).Any()
+                && board.FieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Intersection.Row == 2 && x.Intersection.Column == 2).Any()
+                && board.FieldsPlayed.Where(x => x.TakenBy == ActivePlayer && x.Intersection.Row == 3 && x.Intersection.Column == 3).Any();
         }
 
         private bool IsWonByColumn()
         {
-            return fieldsPlayed.Where(x => x.TakenBy == ActivePlayer).GroupBy(x => x.Intersection.Column).Any(x => x.Count() == 3);
+            return board.FieldsPlayed.Where(x => x.TakenBy == ActivePlayer).GroupBy(x => x.Intersection.Column).Any(x => x.Count() == 3);
         }
 
         private bool IsWonByRow()
         {
-            return fieldsPlayed.Where(x => x.TakenBy == ActivePlayer).GroupBy(x => x.Intersection.Row).Any(x => x.Count() == 3);
+            return board.FieldsPlayed.Where(x => x.TakenBy == ActivePlayer).GroupBy(x => x.Intersection.Row).Any(x => x.Count() == 3);
         }
 
         private void ChangePlayer()
@@ -127,7 +126,7 @@ namespace TicTacToeKata
 
         private bool HasFieldBeenTaken()
         {
-            return fieldsPlayed.Any(x => x.Intersection.Row == field.Intersection.Row && x.Intersection.Column == field.Intersection.Column);
+            return board.FieldsPlayed.Any(x => x.Intersection.Row == field.Intersection.Row && x.Intersection.Column == field.Intersection.Column);
         }
     }
 }
