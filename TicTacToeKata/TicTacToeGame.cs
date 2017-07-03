@@ -21,7 +21,7 @@ namespace TicTacToeKata
 
             field = new Field { Intersection = intersection, TakenBy = player };
 
-            if ((IsActive(player)) && IsMoveValid())
+            if (IsActive(player))
             {
                 TakeTurn(intersection, player);
             }            
@@ -29,6 +29,7 @@ namespace TicTacToeKata
         
         private void TakeTurn(Intersection intersection, Player player)
         {
+            int countOfFieldsPlayed = board.CountOfFieldsPlayed;
             board.Place(intersection, player);
 
             if (IsGameWon())
@@ -45,7 +46,10 @@ namespace TicTacToeKata
                 return;
             }
 
-            ChangePlayer();
+            if (board.CountOfFieldsPlayed == countOfFieldsPlayed + 1)
+            {
+                ChangePlayer();
+            }
         }
 
         private bool AreAllFieldsPlayed()
@@ -107,26 +111,6 @@ namespace TicTacToeKata
         private bool IsActive(Player player)
         {
             return player == ActivePlayer;
-        }
-
-        private bool IsMoveValid()
-        {
-            return !(RowIsInvalid() || ColumnIsInvalid() || HasFieldBeenTaken());
-        }
-
-        private bool RowIsInvalid()
-        {
-            return field.Intersection.Row < 1 || field.Intersection.Row > 3;
-        }
-
-        private bool ColumnIsInvalid()
-        {
-            return field.Intersection.Column < 1 || field.Intersection.Column > 3;
-        }
-
-        private bool HasFieldBeenTaken()
-        {
-            return board.FieldsPlayed.Any(x => x.Intersection.Row == field.Intersection.Row && x.Intersection.Column == field.Intersection.Column);
-        }
+        }        
     }
 }
