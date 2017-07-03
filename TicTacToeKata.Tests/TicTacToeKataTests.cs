@@ -6,7 +6,7 @@ namespace TicTacToeKata.Tests
     public class TicTacToeKataTests
     {
         private TicTacToeGame game;
-        private Board board = new Board();
+        private Board board = new Board(3, 3);
 
         [TestInitialize]
         public void SetUp()
@@ -63,23 +63,7 @@ namespace TicTacToeKata.Tests
             // Assert
             Assert.AreEqual<int>(1, game.CountOfFieldsPlayed, "One field played");
             Assert.AreEqual<Player>(Player.O, game.ActivePlayer, "Active player is O");
-        }        
-
-        [TestMethod]
-        public void OutOfBounds()
-        {
-            WhenRowIsTooBig();
-            Assert.AreEqual<int>(0, game.CountOfFieldsPlayed);
-
-            WhenColumnIsTooBig();
-            Assert.AreEqual<int>(0, game.CountOfFieldsPlayed);
-
-            WhenRowIsTooSmall();
-            Assert.AreEqual<int>(0, game.CountOfFieldsPlayed);
-
-            WhenColumnIsTooSmall();
-            Assert.AreEqual<int>(0, game.CountOfFieldsPlayed);
-        }        
+        }           
 
         [TestMethod]
         public void GameIsOverWhenAllFieldsAreTaken()
@@ -145,26 +129,6 @@ namespace TicTacToeKata.Tests
             // Assert
             Assert.AreEqual<bool>(true, game.IsOver, "Game is over");
             Assert.AreEqual<Player?>(Player.O, game.Winner, "Player O is winner");
-        }
-
-        private void WhenColumnIsTooSmall()
-        {
-            game.TakeField(new Intersection { Row = 1, Column = -1 }, Player.X);
-        }
-
-        private void WhenRowIsTooSmall()
-        {
-            game.TakeField(new Intersection { Row = -1, Column = 1 }, Player.X);
-        }
-
-        private void WhenColumnIsTooBig()
-        {
-            game.TakeField(new Intersection { Row = 1, Column = 4 }, Player.X);
-        }
-
-        private void WhenRowIsTooBig()
-        {
-            game.TakeField(new Intersection { Row = 4, Column = 1 }, Player.X);
         }
 
         private void WhenPlayerTriesToPlayConsecutively()
