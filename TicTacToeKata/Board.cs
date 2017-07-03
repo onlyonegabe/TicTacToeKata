@@ -43,5 +43,10 @@ namespace TicTacToeKata
         {
             return FieldsPlayed.Any(x => x.Intersection.Row == field.Intersection.Row && x.Intersection.Column == field.Intersection.Column);
         }
+
+        public bool AreAllFieldsPlayed()
+        {
+            return CountOfFieldsPlayed == 9;
+        }
     }
 }

@@ -41,7 +41,7 @@ namespace TicTacToeKata
                 return;
             }
 
-            if (AreAllFieldsPlayed())
+            if (board.AreAllFieldsPlayed())
             {
                 IsOver = true;
                 Winner = null;
@@ -53,11 +53,6 @@ namespace TicTacToeKata
                 ChangePlayer();
             }
         }
-
-        private bool AreAllFieldsPlayed()
-        {
-            return board.CountOfFieldsPlayed == 9;
-        }        
 
         private bool IsGameWon()
         {
