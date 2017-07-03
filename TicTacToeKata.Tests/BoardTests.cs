@@ -34,5 +34,13 @@ namespace TicTacToeKata.Tests
             board.Place(new Intersection { Row = 1, Column = -1 }, Player.X);
             Assert.AreEqual<int>(0, board.CountOfFieldsPlayed);
         }
+
+        [TestMethod]
+        public void GivenIntersectionAlreadyTaken_WillNotPlace()
+        {
+            board.Place(new Intersection { Row = 3, Column = 3 }, Player.X);
+            board.Place(new Intersection { Row = 3, Column = 3 }, Player.O);
+            Assert.AreEqual<int>(1, board.CountOfFieldsPlayed);
+        }
     }
 }

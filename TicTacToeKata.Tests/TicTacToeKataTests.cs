@@ -55,17 +55,6 @@ namespace TicTacToeKata.Tests
         }        
 
         [TestMethod]
-        public void PlayerCannotTakeAFieldAlreadyTaken()
-        {
-            // Act
-            WhenPlayerTriesToTakeAFieldAlreadyTaken();
-
-            // Assert
-            Assert.AreEqual<int>(1, game.CountOfFieldsPlayed, "One field played");
-            Assert.AreEqual<Player>(Player.O, game.ActivePlayer, "Active player is O");
-        }           
-
-        [TestMethod]
         public void GameIsOverWhenAllFieldsAreTaken()
         {
             // Act
@@ -136,12 +125,6 @@ namespace TicTacToeKata.Tests
             game.TakeField(new Intersection { Row = 2, Column = 1 }, Player.X);
             game.TakeField(new Intersection { Row = 1, Column = 1 }, Player.O);
             game.TakeField(new Intersection { Row = 1, Column = 2 }, Player.O);
-        }
-
-        private void WhenPlayerTriesToTakeAFieldAlreadyTaken()
-        {
-            game.TakeField(new Intersection { Row = 1, Column = 1 }, Player.X);
-            game.TakeField(new Intersection { Row = 1, Column = 1 }, Player.O);
         }
 
         private void WhenAllFieldsAreTaken()
