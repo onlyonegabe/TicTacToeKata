@@ -42,5 +42,29 @@ namespace TicTacToeKata.Tests
             board.Place(new Intersection { Row = 3, Column = 3 }, Player.O);
             Assert.AreEqual<int>(1, board.NumberOfFieldsPlayed);
         }
+
+        [TestMethod]
+        public void GivenWidthAndHeight_AllFieldsArePlayed()
+        {
+            Assert.IsFalse(board.AreAllFieldsPlayed(), "Empty board");
+
+            FillBoard(3, 3);
+            Assert.IsTrue(board.AreAllFieldsPlayed(), "Board 3x3");
+
+            FillBoard(4, 4);
+            Assert.IsTrue(board.AreAllFieldsPlayed(), "Board 4x4");
+        }
+
+        private void FillBoard(int row, int column)
+        {
+            board = new Board(row, column);
+            for (int x = 1; x <= row; x++)
+            {
+                for (int y = 1; y <= column; y++)
+                {
+                    board.Place(new Intersection { Row = x, Column = y }, Player.X);
+                }
+            }
+        }
     }
 }

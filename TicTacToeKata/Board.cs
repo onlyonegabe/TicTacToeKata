@@ -30,7 +30,7 @@ namespace TicTacToeKata
 
         public bool AreAllFieldsPlayed()
         {
-            return NumberOfFieldsPlayed == 9;
+            return NumberOfFieldsPlayed == (width * height);
         }
 
         private bool IsMoveValid()
