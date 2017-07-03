@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace TicTacToeKata
 {
-    public class Board
+    public class Board : IBoard
     {
         private Field field;
 

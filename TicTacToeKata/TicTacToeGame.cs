@@ -4,13 +4,17 @@ namespace TicTacToeKata
 {
     public class TicTacToeGame
     {
-        private Field field;
-        private Board board = new Board();
+        private IBoard board;
 
         public Player ActivePlayer { get; private set; }
         public int CountOfFieldsPlayed { get { return board.CountOfFieldsPlayed; } }
         public bool IsOver { get; private set; }
         public Player? Winner { get; private set; }
+
+        public TicTacToeGame(IBoard board)
+        {
+            this.board = board; 
+        }
 
         public void TakeField(Intersection intersection, Player player)
         {
@@ -18,8 +22,6 @@ namespace TicTacToeKata
             {
                 return;
             }
-
-            field = new Field { Intersection = intersection, TakenBy = player };
 
             if (IsActive(player))
             {

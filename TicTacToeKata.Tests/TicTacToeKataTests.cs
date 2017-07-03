@@ -6,11 +6,12 @@ namespace TicTacToeKata.Tests
     public class TicTacToeKataTests
     {
         private TicTacToeGame game;
+        private Board board = new Board();
 
         [TestInitialize]
         public void SetUp()
         {
-            game = new TicTacToeGame();
+            game = new TicTacToeGame(board);
         }
 
         [TestMethod]
