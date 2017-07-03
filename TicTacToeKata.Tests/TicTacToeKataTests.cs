@@ -18,7 +18,7 @@ namespace TicTacToeKata.Tests
         public void FirstPlayerMustBeX()
         {
             // Act
-            game.TakeField(new Intersection { Row = 1, Column = 1 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 1, Column = 1 }, Player.X);
 
             // Assert
             Assert.AreEqual<int>(1, game.CountOfFieldsPlayed);
@@ -28,7 +28,7 @@ namespace TicTacToeKata.Tests
         public void FirstPlayerCannotBeO()
         {
             // Act
-            game.TakeField(new Intersection { Row = 1, Column = 1 }, Player.O);
+            game.TakeTurn(new Intersection { Row = 1, Column = 1 }, Player.O);
 
             // Assert
             Assert.AreEqual<int>(0, game.CountOfFieldsPlayed);
@@ -38,7 +38,7 @@ namespace TicTacToeKata.Tests
         public void PlayersMustSwitchOnEachTurn()
         {
             // Act
-            game.TakeField(new Intersection { Row = 1, Column = 1 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 1, Column = 1 }, Player.X);
 
             // Assert
             Assert.AreEqual<Player>(Player.O, game.ActivePlayer);
@@ -81,7 +81,7 @@ namespace TicTacToeKata.Tests
         {
             // Act
             WhenPlayerXWinsGameByRow();
-            game.TakeField(new Intersection { Row = 3, Column = 3 }, Player.O);
+            game.TakeTurn(new Intersection { Row = 3, Column = 3 }, Player.O);
 
             // Assert
             Assert.AreEqual<int>(5, game.CountOfFieldsPlayed);
@@ -122,59 +122,59 @@ namespace TicTacToeKata.Tests
 
         private void WhenPlayerTriesToPlayConsecutively()
         {
-            game.TakeField(new Intersection { Row = 2, Column = 1 }, Player.X);
-            game.TakeField(new Intersection { Row = 1, Column = 1 }, Player.O);
-            game.TakeField(new Intersection { Row = 1, Column = 2 }, Player.O);
+            game.TakeTurn(new Intersection { Row = 2, Column = 1 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 1, Column = 1 }, Player.O);
+            game.TakeTurn(new Intersection { Row = 1, Column = 2 }, Player.O);
         }
 
         private void WhenAllFieldsAreTaken()
         {
-            game.TakeField(new Intersection { Row = 1, Column = 2 }, Player.X);
-            game.TakeField(new Intersection { Row = 1, Column = 1 }, Player.O);
-            game.TakeField(new Intersection { Row = 2, Column = 2 }, Player.X);
-            game.TakeField(new Intersection { Row = 1, Column = 3 }, Player.O);
-            game.TakeField(new Intersection { Row = 2, Column = 3 }, Player.X);
-            game.TakeField(new Intersection { Row = 2, Column = 1 }, Player.O);
-            game.TakeField(new Intersection { Row = 3, Column = 1 }, Player.X);
-            game.TakeField(new Intersection { Row = 3, Column = 2 }, Player.O);
-            game.TakeField(new Intersection { Row = 3, Column = 3 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 1, Column = 2 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 1, Column = 1 }, Player.O);
+            game.TakeTurn(new Intersection { Row = 2, Column = 2 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 1, Column = 3 }, Player.O);
+            game.TakeTurn(new Intersection { Row = 2, Column = 3 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 2, Column = 1 }, Player.O);
+            game.TakeTurn(new Intersection { Row = 3, Column = 1 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 3, Column = 2 }, Player.O);
+            game.TakeTurn(new Intersection { Row = 3, Column = 3 }, Player.X);
         }
 
         private void WhenPlayerXWinsGameByRow()
         {
-            game.TakeField(new Intersection { Row = 1, Column = 1 }, Player.X);
-            game.TakeField(new Intersection { Row = 3, Column = 1 }, Player.O);
-            game.TakeField(new Intersection { Row = 1, Column = 2 }, Player.X);
-            game.TakeField(new Intersection { Row = 2, Column = 2 }, Player.O);
-            game.TakeField(new Intersection { Row = 1, Column = 3 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 1, Column = 1 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 3, Column = 1 }, Player.O);
+            game.TakeTurn(new Intersection { Row = 1, Column = 2 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 2, Column = 2 }, Player.O);
+            game.TakeTurn(new Intersection { Row = 1, Column = 3 }, Player.X);
         }
 
         private void WhenPlayerXWinsGameByColumn()
         {
-            game.TakeField(new Intersection { Row = 1, Column = 1 }, Player.X);
-            game.TakeField(new Intersection { Row = 3, Column = 2 }, Player.O);
-            game.TakeField(new Intersection { Row = 2, Column = 1 }, Player.X);
-            game.TakeField(new Intersection { Row = 2, Column = 2 }, Player.O);
-            game.TakeField(new Intersection { Row = 3, Column = 1 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 1, Column = 1 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 3, Column = 2 }, Player.O);
+            game.TakeTurn(new Intersection { Row = 2, Column = 1 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 2, Column = 2 }, Player.O);
+            game.TakeTurn(new Intersection { Row = 3, Column = 1 }, Player.X);
         }
 
         private void WhenPlayerXWinsGameByDownDiagonal()
         {
-            game.TakeField(new Intersection { Row = 1, Column = 1 }, Player.X);
-            game.TakeField(new Intersection { Row = 1, Column = 2 }, Player.O);
-            game.TakeField(new Intersection { Row = 2, Column = 2 }, Player.X);
-            game.TakeField(new Intersection { Row = 2, Column = 1 }, Player.O);
-            game.TakeField(new Intersection { Row = 3, Column = 3 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 1, Column = 1 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 1, Column = 2 }, Player.O);
+            game.TakeTurn(new Intersection { Row = 2, Column = 2 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 2, Column = 1 }, Player.O);
+            game.TakeTurn(new Intersection { Row = 3, Column = 3 }, Player.X);
         }
 
         private void WhenPlayerOWinsGameByUpDiagonal()
         {
-            game.TakeField(new Intersection { Row = 3, Column = 2 }, Player.X);
-            game.TakeField(new Intersection { Row = 3, Column = 1 }, Player.O);
-            game.TakeField(new Intersection { Row = 1, Column = 1 }, Player.X);
-            game.TakeField(new Intersection { Row = 2, Column = 2 }, Player.O);
-            game.TakeField(new Intersection { Row = 1, Column = 2 }, Player.X);
-            game.TakeField(new Intersection { Row = 1, Column = 3 }, Player.O);
+            game.TakeTurn(new Intersection { Row = 3, Column = 2 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 3, Column = 1 }, Player.O);
+            game.TakeTurn(new Intersection { Row = 1, Column = 1 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 2, Column = 2 }, Player.O);
+            game.TakeTurn(new Intersection { Row = 1, Column = 2 }, Player.X);
+            game.TakeTurn(new Intersection { Row = 1, Column = 3 }, Player.O);
         }
     }
 }
