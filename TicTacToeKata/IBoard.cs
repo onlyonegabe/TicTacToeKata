@@ -4,7 +4,7 @@ namespace TicTacToeKata
 {
     public interface IBoard
     {
-        int CountOfFieldsPlayed { get; }
+        int NumberOfFieldsPlayed { get; }
         List<Field> FieldsPlayed { get; }
 
         void Place(Intersection intersection, Player player);

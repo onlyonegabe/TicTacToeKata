@@ -9,7 +9,7 @@ namespace TicTacToeKata
         private int width;
         private int height;
 
-        public int CountOfFieldsPlayed { get { return FieldsPlayed.Count; } }
+        public int NumberOfFieldsPlayed { get { return FieldsPlayed.Count; } }
         public List<Field> FieldsPlayed { get; private set; }
         
         public Board(int width, int height)
@@ -30,7 +30,7 @@ namespace TicTacToeKata
 
         public bool AreAllFieldsPlayed()
         {
-            return CountOfFieldsPlayed == 9;
+            return NumberOfFieldsPlayed == 9;
         }
 
         private bool IsMoveValid()

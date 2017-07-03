@@ -7,7 +7,7 @@ namespace TicTacToeKata
         private IBoard board;
 
         public Player ActivePlayer { get; private set; }
-        public int CountOfFieldsPlayed { get { return board.CountOfFieldsPlayed; } }
+        public int CountOfFieldsPlayed { get { return board.NumberOfFieldsPlayed; } }
         public bool IsOver { get; private set; }
         public Player? Winner { get; private set; }
 
@@ -31,7 +31,7 @@ namespace TicTacToeKata
         
         private void Play(Intersection intersection, Player player)
         {
-            int countOfFieldsPlayed = board.CountOfFieldsPlayed;
+            int countOfFieldsPlayed = board.NumberOfFieldsPlayed;
             board.Place(intersection, player);
 
             if (board.AreAllFieldsPlayed())
@@ -48,7 +48,7 @@ namespace TicTacToeKata
                 return;
             }            
 
-            if (board.CountOfFieldsPlayed == countOfFieldsPlayed + 1)
+            if (board.NumberOfFieldsPlayed == countOfFieldsPlayed + 1)
             {
                 ChangePlayer();
             }

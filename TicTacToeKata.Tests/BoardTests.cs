@@ -20,27 +20,27 @@ namespace TicTacToeKata.Tests
         }
 
         [TestMethod]
-        public void GivenInvalidIntersectionWillNotPlace()
+        public void WhenInvalidIntersection_WillNotPlace()
         {
             board.Place(new Intersection { Row = 4, Column = 1 }, Player.X);
-            Assert.AreEqual<int>(0, board.CountOfFieldsPlayed);
+            Assert.AreEqual<int>(0, board.NumberOfFieldsPlayed);
 
             board.Place(new Intersection { Row = 1, Column = 4 }, Player.X);
-            Assert.AreEqual<int>(0, board.CountOfFieldsPlayed);
+            Assert.AreEqual<int>(0, board.NumberOfFieldsPlayed);
 
             board.Place(new Intersection { Row = -1, Column = 3 }, Player.X);
-            Assert.AreEqual<int>(0, board.CountOfFieldsPlayed);
+            Assert.AreEqual<int>(0, board.NumberOfFieldsPlayed);
 
             board.Place(new Intersection { Row = 1, Column = -1 }, Player.X);
-            Assert.AreEqual<int>(0, board.CountOfFieldsPlayed);
+            Assert.AreEqual<int>(0, board.NumberOfFieldsPlayed);
         }
 
         [TestMethod]
-        public void GivenIntersectionAlreadyTaken_WillNotPlace()
+        public void WhenIntersectionAlreadyTaken_WillNotPlace()
         {
             board.Place(new Intersection { Row = 3, Column = 3 }, Player.X);
             board.Place(new Intersection { Row = 3, Column = 3 }, Player.O);
-            Assert.AreEqual<int>(1, board.CountOfFieldsPlayed);
+            Assert.AreEqual<int>(1, board.NumberOfFieldsPlayed);
         }
     }
 }
