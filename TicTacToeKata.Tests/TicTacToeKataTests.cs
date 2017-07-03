@@ -21,7 +21,7 @@ namespace TicTacToeKata.Tests
             game.TakeTurn(new Intersection { Row = 1, Column = 1 }, Player.X);
 
             // Assert
-            Assert.AreEqual<int>(1, game.CountOfFieldsPlayed);
+            Assert.AreEqual<int>(1, game.NumberOfFieldsPlayed);
         }
 
         [TestMethod]
@@ -31,7 +31,7 @@ namespace TicTacToeKata.Tests
             game.TakeTurn(new Intersection { Row = 1, Column = 1 }, Player.O);
 
             // Assert
-            Assert.AreEqual<int>(0, game.CountOfFieldsPlayed);
+            Assert.AreEqual<int>(0, game.NumberOfFieldsPlayed);
         }
 
         [TestMethod]
@@ -51,7 +51,7 @@ namespace TicTacToeKata.Tests
             WhenPlayerTriesToPlayConsecutively();
 
             // Assert
-            Assert.AreEqual<int>(2, game.CountOfFieldsPlayed);
+            Assert.AreEqual<int>(2, game.NumberOfFieldsPlayed);
         }        
 
         [TestMethod]
@@ -84,7 +84,7 @@ namespace TicTacToeKata.Tests
             game.TakeTurn(new Intersection { Row = 3, Column = 3 }, Player.O);
 
             // Assert
-            Assert.AreEqual<int>(5, game.CountOfFieldsPlayed);
+            Assert.AreEqual<int>(5, game.NumberOfFieldsPlayed);
         }        
 
         [TestMethod]

@@ -7,7 +7,7 @@ namespace TicTacToeKata
         private IBoard board;
 
         public Player ActivePlayer { get; private set; }
-        public int CountOfFieldsPlayed { get { return board.NumberOfFieldsPlayed; } }
+        public int NumberOfFieldsPlayed { get { return board.NumberOfFieldsPlayed; } }
         public bool IsOver { get; private set; }
         public Player? Winner { get; private set; }
 
@@ -41,7 +41,7 @@ namespace TicTacToeKata
                 return;
             }
 
-            if (IsGameWon())
+            if (IsWin())
             {
                 IsOver = true;
                 Winner = ActivePlayer;
@@ -54,7 +54,7 @@ namespace TicTacToeKata
             }
         }
 
-        private bool IsGameWon()
+        private bool IsWin()
         {
             if (IsWonByRow() || IsWonByColumn() || IsWonByDiagonal())
             {
