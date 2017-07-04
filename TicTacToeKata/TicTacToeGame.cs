@@ -16,7 +16,7 @@ namespace TicTacToeKata
             this.board = board; 
         }
 
-        public void TakeTurn(Intersection intersection, Player player)
+        public void Play(Intersection intersection, Player player)
         {
             if (IsOver)
             {
@@ -25,35 +25,30 @@ namespace TicTacToeKata
 
             if (IsActive(player))
             {
-                Play(intersection, player);
+                int numbrerOfFieldsPlayed = board.NumberOfFieldsPlayed;
+                board.Place(intersection, player);
+
+                if (IsWin())
+                {
+                    IsOver = true;
+                    Winner = ActivePlayer;
+                    return;
+                }
+
+                if (board.IsBoardFull())
+                {
+                    IsOver = true;
+                    Winner = null;
+                    return;
+                }
+
+                if (board.NumberOfFieldsPlayed == numbrerOfFieldsPlayed + 1)
+                {
+                    ChangePlayer();
+                }
             }            
         }
         
-        private void Play(Intersection intersection, Player player)
-        {
-            int countOfFieldsPlayed = board.NumberOfFieldsPlayed;
-            board.Place(intersection, player);
-
-            if (board.AreAllFieldsPlayed())
-            {
-                IsOver = true;
-                Winner = null;
-                return;
-            }
-
-            if (IsWin())
-            {
-                IsOver = true;
-                Winner = ActivePlayer;
-                return;
-            }            
-
-            if (board.NumberOfFieldsPlayed == countOfFieldsPlayed + 1)
-            {
-                ChangePlayer();
-            }
-        }
-
         private bool IsWin()
         {
             if (IsWonByRow() || IsWonByColumn() || IsWonByDiagonal())

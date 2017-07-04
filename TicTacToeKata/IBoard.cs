@@ -8,6 +8,6 @@ namespace TicTacToeKata
         List<Field> FieldsPlayed { get; }
 
         void Place(Intersection intersection, Player player);
-        bool AreAllFieldsPlayed();
+        bool IsBoardFull();
     }
 }

@@ -28,7 +28,7 @@ namespace TicTacToeKata
             }
         }
 
-        public bool AreAllFieldsPlayed()
+        public bool IsBoardFull()
         {
             return NumberOfFieldsPlayed == (width * height);
         }

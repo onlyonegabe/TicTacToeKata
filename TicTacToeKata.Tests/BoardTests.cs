@@ -46,13 +46,13 @@ namespace TicTacToeKata.Tests
         [TestMethod]
         public void GivenWidthAndHeight_AllFieldsArePlayed()
         {
-            Assert.IsFalse(board.AreAllFieldsPlayed(), "Empty board");
+            Assert.IsFalse(board.IsBoardFull(), "Empty board");
 
             FillBoard(3, 3);
-            Assert.IsTrue(board.AreAllFieldsPlayed(), "Board 3x3");
+            Assert.IsTrue(board.IsBoardFull(), "Board 3x3");
 
             FillBoard(4, 4);
-            Assert.IsTrue(board.AreAllFieldsPlayed(), "Board 4x4");
+            Assert.IsTrue(board.IsBoardFull(), "Board 4x4");
         }
 
         private void FillBoard(int row, int column)
